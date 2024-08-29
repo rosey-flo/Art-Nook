@@ -1,6 +1,5 @@
-const { User, Turtle } = require('../models');
+const { User, Artwork } = require('../models');
 const { sign } = require('jsonwebtoken');
-
 const { GraphQLError } = require('graphql');
 
 function createToken(user_id) {
@@ -8,6 +7,9 @@ function createToken(user_id) {
 
   return token;
 }
+
+//if we want to set a limit on the token for 1 hour:
+//{ expiresIn: '1h' }
 
 const resolvers = {
   Query: {
@@ -33,25 +35,25 @@ const resolvers = {
       };
     },
 
-    async getUserTurtles(_, args, context) {
-      const user_id = context.user_id;
+    // async getArtwork(_, args, context) {
+    //   const user_id = context.user_id;
 
-      if (!user_id) {
-        throw new GraphQLError({
-          message: 'Not Authorized'
-        })
-      }
+    //   if (!user_id) {
+    //     throw new GraphQLError({
+    //       message: 'Not Authorized'
+    //     })
+    //   }
 
-      const user = await User.findById(user_id).populate('turtles');
+    //   const user = await User.findById(user_id).populate('artwork');
 
-      return user.turtles;
-    },
+    //   return user.artwork;
+    // },
 
-    async getAllTurtles() {
-      const turtles = await Turtle.find().populate('user');
+    // async getAllArtwork() {
+    //   const artwork = await Artwork.find().populate('user')
 
-      return turtles;
-    }
+    //   return artwork;
+    // }
   },
 
   Mutation: {
@@ -117,49 +119,49 @@ const resolvers = {
     },
 
     // Turtle Resolvers
-    async addTurtle(_, args, context) {
-      const user_id = context.user_id;
+    // async addTurtle(_, args, context) {
+    //   const user_id = context.user_id;
 
-      if (!user_id) {
-        throw new GraphQLError('You are not authorized to perform that action')
-      }
+    //   if (!user_id) {
+    //     throw new GraphQLError('You are not authorized to perform that action')
+    //   }
 
-      const user = await User.findById(user_id);
-      const turtle = await Turtle.create({
-        ...args,
-        user: user._id
-      });
+    //   const user = await User.findById(user_id);
+    //   const turtle = await Turtle.create({
+    //     ...args,
+    //     user: user._id
+    //   });
 
-      user.turtles.push(turtle._id);
-      await user.save();
+    //   user.turtles.push(turtle._id);
+    //   await user.save();
 
-      return turtle
-    },
+    //   return turtle
+    // },
 
-    async deleteTurtle(_, args, context) {
-      const user_id = context.user_id;
+    // async deleteTurtle(_, args, context) {
+    //   const user_id = context.user_id;
 
-      if (!user_id) {
-        throw new GraphQLError('You are not authorized to perform that action')
-      }
+    //   if (!user_id) {
+    //     throw new GraphQLError('You are not authorized to perform that action')
+    //   }
 
-      const user = await User.findById(user_id);
+    //   const user = await User.findById(user_id);
 
-      if (!user.turtles.includes(args.turtle_id)) {
-        throw new GraphQLError('You cannot delete a turtle that you did not add');
-      }
+    //   if (!user.turtles.includes(args.turtle_id)) {
+    //     throw new GraphQLError('You cannot delete a turtle that you did not add');
+    //   }
 
-      await Turtle.deleteOne({
-        _id: args.turtle_id
-      });
+    //   await Turtle.deleteOne({
+    //     _id: args.turtle_id
+    //   });
 
-      user.turtles.pull(args.turtle_id);
-      await user.save();
+    //   user.turtles.pull(args.turtle_id);
+    //   await user.save();
 
-      return {
-        message: 'Turtle deleted successfully'
-      }
-    }
+    //   return {
+    //     message: 'Turtle deleted successfully'
+    //   }
+    // }
   }
 };
 
