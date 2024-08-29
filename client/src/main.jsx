@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import './index.scss'
 
 import App from './App.jsx'

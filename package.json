@@ -4,11 +4,14 @@
   "main": "index.js",
   "scripts": {
     "client:dev": "cd client && npm run dev",
-		"server:dev": "cd server && npm run dev",
-		"dev": "concurrently \"npm run client:dev\" \"npm run server:dev\""
+    "server:dev": "cd server && npm run dev",
+    "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
