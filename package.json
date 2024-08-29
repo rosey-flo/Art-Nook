@@ -1,0 +1,12 @@
+{
+  "name": "project-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "client:dev": "cd client && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
