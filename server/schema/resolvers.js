@@ -119,7 +119,8 @@ const resolvers = {
     },
 
     // Turtle Resolvers
-    // async addTurtle(_, args, context) {
+
+    // async addArtwork(_, args, context) {
     //   const user_id = context.user_id;
 
     //   if (!user_id) {
@@ -127,18 +128,36 @@ const resolvers = {
     //   }
 
     //   const user = await User.findById(user_id);
-    //   const turtle = await Turtle.create({
+    //   const artwork = await Artwork.create({
     //     ...args,
     //     user: user._id
     //   });
 
-    //   user.turtles.push(turtle._id);
+    //   user.artwork.push(artwork._id);
     //   await user.save();
 
-    //   return turtle
+    //   return artwork
     // },
 
-    // async deleteTurtle(_, args, context) {
+    //EXTRA OPTIONAL TO UPDATE ARTWORK
+    // async updateArtwork(_, { id, input }, context) {
+    //   const user_id = context.user_id;
+
+    //   if (!user_id) {
+    //     throw new GraphQLError('You are not authorized to perform that action');
+    //   }
+
+    //   const artwork = await Artwork.findById(id);
+
+    //   if (!artwork || !artwork.artist.equals(user_id)) {
+    //     throw new GraphQLError('You can only update artworks you created');
+    //   }
+
+    //   const updatedArtwork = await Artwork.findByIdAndUpdate(id, input, { new: true });
+    //   return updatedArtwork;
+    // },
+
+    // async deleteArtwork(_, args, context) {
     //   const user_id = context.user_id;
 
     //   if (!user_id) {
@@ -147,19 +166,19 @@ const resolvers = {
 
     //   const user = await User.findById(user_id);
 
-    //   if (!user.turtles.includes(args.turtle_id)) {
-    //     throw new GraphQLError('You cannot delete a turtle that you did not add');
+    //   if (!user.artwork.includes(args.artwork_id)) {
+    //     throw new GraphQLError('You cannot delete an artwork that you did not add');
     //   }
 
-    //   await Turtle.deleteOne({
-    //     _id: args.turtle_id
+    //   await Artwork.deleteOne({
+    //     _id: args.artwork_id
     //   });
 
-    //   user.turtles.pull(args.turtle_id);
+    //   user.artwork.pull(args.artwork_id);
     //   await user.save();
 
     //   return {
-    //     message: 'Turtle deleted successfully'
+    //     message: 'Artwork deleted successfully'
     //   }
     // }
   }
