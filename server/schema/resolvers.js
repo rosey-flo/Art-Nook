@@ -35,25 +35,25 @@ const resolvers = {
       };
     },
 
-    // async getArtwork(_, args, context) {
-    //   const user_id = context.user_id;
+    async getArtwork(_, args, context) {
+      const user_id = context.user_id;
 
-    //   if (!user_id) {
-    //     throw new GraphQLError({
-    //       message: 'Not Authorized'
-    //     })
-    //   }
+      if (!user_id) {
+        throw new GraphQLError({
+          message: 'Not Authorized'
+        })
+      }
 
-    //   const user = await User.findById(user_id).populate('artwork');
+      const user = await User.findById(user_id).populate('artwork');
 
-    //   return user.artwork;
-    // },
+      return user.artwork;
+    },
 
-    // async getAllArtwork() {
-    //   const artwork = await Artwork.find().populate('user')
+    async getAllArtwork() {
+      const artwork = await Artwork.find().populate('user')
 
-    //   return artwork;
-    // }
+      return artwork;
+    }
   },
 
   Mutation: {
@@ -120,67 +120,72 @@ const resolvers = {
 
     // Turtle Resolvers
 
-    // async addArtwork(_, args, context) {
-    //   const user_id = context.user_id;
+    async addArtwork(_, args, context) {
+      const user_id = context.user_id;
 
-    //   if (!user_id) {
-    //     throw new GraphQLError('You are not authorized to perform that action')
-    //   }
+      if (!user_id) {
+        throw new GraphQLError('You are not authorized to perform that action')
+      }
 
-    //   const user = await User.findById(user_id);
-    //   const artwork = await Artwork.create({
-    //     ...args,
-    //     user: user._id
-    //   });
+      const user = await User.findById(user_id);
+      const artwork = await Artwork.create({
+        ...args,
+        user: user._id,
+				
+      });
 
-    //   user.artwork.push(artwork._id);
-    //   await user.save();
+      user.artwork.push(artwork._id);
+      await user.save();
 
-    //   return artwork
-    // },
+			console.log(user)
+
+      return artwork.populate('artist')
+    },
 
     //EXTRA OPTIONAL TO UPDATE ARTWORK
-    // async updateArtwork(_, { id, input }, context) {
-    //   const user_id = context.user_id;
+    async updateArtwork(_, args, context) {
+      const user_id = context.user_id;
+			console.log(args)
+      if (!user_id) {
+        throw new GraphQLError('You are not authorized to perform that action');
+      }
 
-    //   if (!user_id) {
-    //     throw new GraphQLError('You are not authorized to perform that action');
-    //   }
+      const artwork = await Artwork.findById(args.id);
 
-    //   const artwork = await Artwork.findById(id);
+      if (!artwork || !artwork.artist.equals(user_id)) {
+        throw new GraphQLError('You can only update artworks you created');
+      }
 
-    //   if (!artwork || !artwork.artist.equals(user_id)) {
-    //     throw new GraphQLError('You can only update artworks you created');
-    //   }
+      const updatedArtwork = await Artwork.findByIdAndUpdate(args.id, {title: args.title, description: args.description, imageUrl: args.imageUrl}, { new: true });
+      return updatedArtwork;
+    },
 
-    //   const updatedArtwork = await Artwork.findByIdAndUpdate(id, input, { new: true });
-    //   return updatedArtwork;
-    // },
+    async deleteArtwork(_, args, context) {
+      const user_id = context.user_id;
 
-    // async deleteArtwork(_, args, context) {
-    //   const user_id = context.user_id;
+      if (!user_id) {
+        throw new GraphQLError('You are not authorized to perform that action')
+      }
+			console.log(args)
+      const user = await User.findById(user_id);
 
-    //   if (!user_id) {
-    //     throw new GraphQLError('You are not authorized to perform that action')
-    //   }
+      if (!user.artwork.includes(args.id)) {
+        throw new GraphQLError('You cannot delete an artwork that you did not add');
+      }
 
-    //   const user = await User.findById(user_id);
+			
 
-    //   if (!user.artwork.includes(args.artwork_id)) {
-    //     throw new GraphQLError('You cannot delete an artwork that you did not add');
-    //   }
+      await Artwork.deleteOne({
+        _id: args.id
+      });
 
-    //   await Artwork.deleteOne({
-    //     _id: args.artwork_id
-    //   });
+      user.artwork.pull(args.id);
+      await user.save();
 
-    //   user.artwork.pull(args.artwork_id);
-    //   await user.save();
-
-    //   return {
-    //     message: 'Artwork deleted successfully'
-    //   }
-    // }
+      return {
+        message: 'Artwork deleted successfully'
+      }
+    }
   }
 };
 

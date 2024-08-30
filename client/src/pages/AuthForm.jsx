@@ -13,7 +13,7 @@ const initialFormData = {
 }
 
 
-function AuthForm() {
+function AuthForm(props) {
     const [formData, setFormData] = useState(initialFormData)
     const [loginUser] = useMutation(LOGIN_USER, {
         variables: formData
