@@ -7,6 +7,7 @@ import Protect from './components/Protect'
 
 import MainGallery from "./pages/MainGallery"
 import AuthForm from './pages/AuthForm'
+import UserDashboard from "./pages/UserDashboard"
 
 import { GET_USER } from './graphql/queries'
 
@@ -20,6 +21,7 @@ function App() {
     }
   }, [data])
 
+
   return (
     <>
 
@@ -31,6 +33,13 @@ function App() {
           <Protect requireAuth={false} user={user} >
             <AuthForm setUser={setUser} />
           </Protect>
+
+        )} />
+        <Route path='/dashboard' element={(
+          <Protect requireAuth={true} user={user} >
+            <UserDashboard user={user} />
+          </Protect>
+
         )} />
       </Routes>
 
