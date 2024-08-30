@@ -12,10 +12,9 @@ const userSchema = new Schema({
 	email: {
 		type: String,
 		required: true,
-		unique: true, //make sure to drop the user collection if it already exists to make the unique functionality work
+		unique: true,
 		validate: {
 			validator(val) {
-				//validates that the string the user typed is a valid email string
 				return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(val);
 			}
 		}
@@ -27,22 +26,21 @@ const userSchema = new Schema({
 		minLength: [6, 'Your password must be at least 6 characters in length'],
 	},
 
-	artwork: [{
-		type: Schema.Types.ObjectId,
-		ref: 'Artwork',
-	}]
+	// artwork: [{
+	// 	type: Schema.Types.ObjectId,
+	// 	ref: 'Artwork',
+	// }]
 },
- {
-	//edit the users object before it gets set out in a JSON response to the browser/client this is deleting the password from the response notr from the database
-	toJSON: {
-		transform(user, jsonVal) {
-			delete jsonVal.password;
-			delete jsonVal.__v;
+	{
+		toJSON: {
+			transform(user, jsonVal) {
+				delete jsonVal.password;
+				delete jsonVal.__v;
 
-			return jsonVal;
+				return jsonVal;
+			}
 		}
-	}
-});
+	});
 
 userSchema.pre('save', async function () {
 	// check if this is a newly created user and not jsut a  user update
