@@ -21,9 +21,9 @@ const artworkSchema = new Schema({
     required: true
   },
 
-  createdAt: {
-    type: Date,
-    default: Date.now
+  date: {
+    type: String,
+    required: true
   },
 
   // comments: [{
