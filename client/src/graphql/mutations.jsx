@@ -29,18 +29,27 @@ mutation LogoutUser {
   }
 }`
 
-// export const ADD_TURTLE = gql`
-// mutation AddTurtle($name: String, $weapon: String, $headbandColor: String) {
-//   addTurtle(name: $name, weapon: $weapon, headbandColor: $headbandColor) {
-//     name
-//     weapon
-//     headbandColor
-//   }
-// }`
+export const ADD_ARTWORK = gql`
+	mutation AddArtwork($title: String!, $description: String, $imageUrl: String!, $date: String, $artist: String) {
+  addArtwork(title: $title, description: $description, imageUrl: $imageUrl, date: $date, artist: $artist) {
+    _id
+    date
+    description
+    imageUrl
+    title
+    artist {
+      _id
+      email
+      username
+    }
+  }
+}
+`
 
-// export const DELETE_TURTLE = gql`
-// mutation DeleteTurtle($turtle_id: ID) {
-//   deleteTurtle(turtle_id: $turtle_id) {
-//     message
-//   }
-// }`
+export const DELETE_ARTWORK = gql`
+	mutation DeleteArtwork($deleteArtworkId: ID!) {
+  deleteArtwork(id: $deleteArtworkId) {
+    message
+  }
+}
+`
