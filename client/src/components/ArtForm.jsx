@@ -3,10 +3,10 @@ import { AdvancedImage } from '@cloudinary/react';
 import { useState } from 'react';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
-import {useMutation} from '@apollo/client'
+import { useMutation } from '@apollo/client'
 
 import UploadWidget from './UploadWidget';
-import {ADD_ARTWORK, DELETE_ARTWORK} from '../graphql/mutations'
+import { ADD_ARTWORK, DELETE_ARTWORK } from '../graphql/mutations'
 
 const initialFormData = {
     title: '',
@@ -17,32 +17,36 @@ const initialFormData = {
 }
 
 const ArtForm = () => {
+    const [showForm, setShowForm] = useState(false)
     const [formData, setFormData] = useState(initialFormData);
-		const [addArtwork] = useMutation(ADD_ARTWORK, {
-			    variables: formData,
-			    // refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
-			})
 
-		const handleInputChange = event => {
-			
-			setFormData({
-				...formData,
-				[event.target.name]: event.target.value
-			})
-		}
+    const [addArtwork] = useMutation(ADD_ARTWORK, {
+        variables: formData,
+        // refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
+    })
 
-		const handleSubmit = async event => {
-			console.log(formData)
-			event.preventDefault()
+    const handleInputChange = event => {
 
-			const res = await addArtwork();
+        setFormData(prevState => ({
+            ...formData,
+            [event.target.name]: event.target.value
+        }))
+    }
 
-			console.log(res)
+    const handleSubmit = async event => {
 
-			// setFormData({
-			// 	...initialFormData
-			// })
-		}
+        event.preventDefault()
+
+        console.log(formData)
+
+        const res = await addArtwork();
+
+        console.log(res)
+
+        setFormData({
+            ...initialFormData
+        })
+    }
 
     const handleUpload = (error, result, widget) => {
         if (error) {
@@ -66,27 +70,16 @@ const ArtForm = () => {
             imageUrl: result.info.secure_url
         })
 
+        setShowForm(true)
+
     };
 
     return (
         <>
-            <form >
-                <div className="mb-3">
-                    <label className="form-label">Artwork Title</label>
-                    <input onChange={handleInputChange} name="title" value={formData.title} type="text" />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Description</label>
-                    <input onChange={handleInputChange} name="description" value={formData.description} type="text" />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Month & Year Art was Created:</label>
-                    <input onChange={handleInputChange} name="date" type="text" value={formData.date} placeholder="MM/YYYY" />
-                </div>
+            {!showForm ? (
+                //     {/* Cloudinary Widget */}
 
-                {/* Cloudinary Widget */}
-                
-								<div>
+                <div>
                     <UploadWidget onUpload={handleUpload}>
                         {({ open }) => {
                             function handleOnClick(e) {
@@ -101,14 +94,29 @@ const ArtForm = () => {
                         }}
                     </UploadWidget>
                 </div>
+            ) : (
+                <form >
+                    <div className="mb-3">
+                        <label className="form-label">Artwork Title</label>
+                        <input onChange={handleInputChange} name="title" value={formData.title} type="text" />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Description</label>
+                        <input onChange={handleInputChange} name="description" value={formData.description} type="text" />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Month & Year Art was Created:</label>
+                        <input onChange={handleInputChange} name="date" type="text" value={formData.date} placeholder="MM/YYYY" />
+                    </div>
 
+                    <button onClick={handleSubmit} className="btn btn-primary">Submit</button>
+                </form>
 
-                <button onClick={handleSubmit} className="btn btn-primary">Submit</button>
-            </form>
+            )}
 
-						
         </>
     );
 };
 
 export default ArtForm;
+
