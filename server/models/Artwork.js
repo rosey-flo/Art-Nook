@@ -3,7 +3,7 @@ const { model, Schema } = require('mongoose');
 const artworkSchema = new Schema({
   title: {
     type: String,
-    required: true
+    // required: true
   },
 
   description: {
@@ -12,18 +12,18 @@ const artworkSchema = new Schema({
 
   imageUrl: {
     type: String,
-    required: true
+    // required: true
   },
 
   artist: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    
   },
 
   date: {
     type: String,
-    required: true
+    // required: true
   },
 
   // comments: [{
