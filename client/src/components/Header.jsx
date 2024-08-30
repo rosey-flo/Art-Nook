@@ -1,43 +1,20 @@
-// import { NavLink, useNavigate } from "react-router-dom";
-// import { useApolloClient, useMutation } from "@apollo/client";
+import { NavLink } from 'react-router-dom'
 
-// import { LOGOUT_USER } from "../graphql/mutations";
+function Header() {
+    return (
+        <header className="header d-flex flex-row justify-content-between align-items-center mb-3 p-4">
+            <NavLink to="/">
+                <h1 className="text-center mb-3">Art Nook</h1>
+            </NavLink>
 
+            <nav>
+                <NavLink to="/">Main Gallery</NavLink>
+                <NavLink to="/dashboard">dashboard</NavLink>
+            </nav>
+        </header>
+    )
 
-// function Header(props) {
-//     const navigate = useNavigate()
-//     const client = useApolloClient()
-//     const [logoutUser] = useMutation(LOGOUT_USER)
+}
 
+export default Header;
 
-//     const handleLogout = async () => {
-//         await logoutUser()
-//         await props.setUser(null)
-
-//         client.clearStore()
-
-//         navigate('/')
-//     }
-//     return (
-//         <header className="row justify-between align-center">
-//             <NavLink to="/">
-//                 <h3>Art Nook</h3>
-//             </NavLink>
-
-//             {props.user ? (
-//                 <div className="row align-center">
-//                     <p>Welcome, {props.user.username}</p>
-//                     <NavLink className="dashboard-link" to="/dashboard">Dashboard</NavLink>
-//                     <button onClick={handleLogout}>Log Out</button>
-//                 </div>
-//             ) : (
-//                 <nav>
-//                     <NavLink to="/">Home</NavLink>
-//                     <NavLink to="/auth">Log In or Register</NavLink>
-//                 </nav>
-//             )}
-//         </header>
-//     );
-// }
-
-// export default Header;
