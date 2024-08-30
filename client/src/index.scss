@@ -1,0 +1,109 @@
+@font-face {
+    font-family: 'Null';
+    src: url('/assets/fonts/Null-Normal.eot');
+    src: url('/assets/fonts/Null-Normal.eot?#iefix') format('embedded-opentype'),
+        url('/assets/fonts/Null-Normal.woff2') format('woff2'),
+        url('/assets/fonts/Null-Normal.woff') format('woff')
+}
+
+
+// Sass Variables
+
+$specialfont: 'Null',
+    Helvetica,
+    Arial,
+    sans-serif;
+
+$specialblue: #8E53FA;
+$specialpurple: #A761D4;
+$specialpink: #BE6DB1;
+$specialorange: #FB8F52;
+$specialwhite: #E4E2DD;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+a {
+    color: $specialpurple;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+//  Custom Styles
+
+header {
+    padding: 10px 5%;
+
+    h1 {
+        font-size: 26px;
+        font-family: $specialfont;
+    }
+
+    p {
+        margin-right: 20px;
+    }
+
+    nav {
+        a {
+            color: $specialpurple;
+            margin-left: 20px;
+
+            &.active,
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+// Main Gallery
+
+
+// AuthForm Styles
+
+form {
+    width: 400px;
+    margin: 0px auto;
+
+    >* {
+        padding: 6px 6px;
+        margin-bottom: 6px;
+        border-radius: 4px;
+
+        &:forcus {
+            outline: 3px solid $specialpurple;
+        }
+    }
+
+    button {
+        background: $specialpurple;
+        padding: 10px;
+        width: 35%;
+        align-self: center;
+    }
+
+    span {
+        &:hover {
+            text-decoration: underline;
+            color: $specialpurple;
+            cursor: pointer;
+        }
+    }
+}

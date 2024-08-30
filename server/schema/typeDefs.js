@@ -28,8 +28,8 @@ const typeDefs = gql`
 
   type Query {
     getUser: AuthResponse
-    getArtwork(id: ID): Artwork
-    getAllArtworks: [Artwork]
+    # getArtwork(id: ID): Artwork
+    # getAllArtworks: [Artwork]
   }
 
   type Mutation {
