@@ -17,7 +17,9 @@ const initialFormData = {
 }
 
 const ArtForm = () => {
+    const [showForm, setShowForm] = useState(false)
     const [formData, setFormData] = useState(initialFormData);
+
     const [addArtwork] = useMutation(ADD_ARTWORK, {
         variables: formData,
         // refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
@@ -25,23 +27,25 @@ const ArtForm = () => {
 
     const handleInputChange = event => {
 
-        setFormData({
+        setFormData(prevState => ({
             ...formData,
             [event.target.name]: event.target.value
-        })
+        }))
     }
 
     const handleSubmit = async event => {
-        console.log(formData)
+
         event.preventDefault()
+
+        console.log(formData)
 
         const res = await addArtwork();
 
         console.log(res)
 
-        // setFormData({
-        // 	...initialFormData
-        // })
+        setFormData({
+            ...initialFormData
+        })
     }
 
     const handleUpload = (error, result, widget) => {
@@ -66,25 +70,14 @@ const ArtForm = () => {
             imageUrl: result.info.secure_url
         })
 
+        setShowForm(true)
+
     };
 
     return (
         <>
-            <form >
-                <div className="mb-3">
-                    <label className="form-label">Artwork Title</label>
-                    <input onChange={handleInputChange} name="title" value={formData.title} type="text" />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Description</label>
-                    <input onChange={handleInputChange} name="description" value={formData.description} type="text" />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Month & Year Art was Created:</label>
-                    <input onChange={handleInputChange} name="date" type="text" value={formData.date} placeholder="MM/YYYY" />
-                </div>
-
-                {/* Cloudinary Widget */}
+            {!showForm ? (
+                //     {/* Cloudinary Widget */}
 
                 <div>
                     <UploadWidget onUpload={handleUpload}>
@@ -101,14 +94,29 @@ const ArtForm = () => {
                         }}
                     </UploadWidget>
                 </div>
+            ) : (
+                <form >
+                    <div className="mb-3">
+                        <label className="form-label">Artwork Title</label>
+                        <input onChange={handleInputChange} name="title" value={formData.title} type="text" />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Description</label>
+                        <input onChange={handleInputChange} name="description" value={formData.description} type="text" />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Month & Year Art was Created:</label>
+                        <input onChange={handleInputChange} name="date" type="text" value={formData.date} placeholder="MM/YYYY" />
+                    </div>
 
+                    <button onClick={handleSubmit} className="btn btn-primary">Submit</button>
+                </form>
 
-                <button onClick={handleSubmit} className="btn btn-primary">Submit</button>
-            </form>
-
+            )}
 
         </>
     );
 };
 
 export default ArtForm;
+
