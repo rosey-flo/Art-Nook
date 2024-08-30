@@ -57,22 +57,7 @@ const ArtForm = () => {
                     <input type="text" placeholder="MM/YYYY" />
                 </div>
 
-                {/* Cloudinary Widget */}
-                <div>
-                    <UploadWidget onUpload={handleUpload}>
-                        {({ open }) => {
-                            function handleOnClick(e) {
-                                e.preventDefault();
-                                open();
-                            }
-                            return (
-                                <button onClick={handleOnClick}>
-                                    Upload an Image
-                                </button>
-                            )
-                        }}
-                    </UploadWidget>
-                </div>
+
 
 
                 <button type="submit" className="btn btn-primary">Submit</button>
