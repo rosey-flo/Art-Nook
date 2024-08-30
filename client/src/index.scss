@@ -107,3 +107,67 @@ form {
         }
     }
 }
+
+// Landing Page 
+
+.landing-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $specialwhite;
+    transition: opacity 1s ease-out;
+    font-family: $specialfont;
+
+    // Background Image
+    background-image: url('../assets/images/backgroundImage.png');
+
+    &.fade-out {
+        opacity: 0;
+    }
+
+    .top-nav {
+        position: absolute;
+        top: 20px;
+        right: 5%;
+        display: flex;
+
+        .nav-link {
+            color: $specialpurple;
+            margin-left: 20px;
+            font-size: 1.2rem;
+            text-decoration: none;
+
+            &.active,
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+
+        .enter-button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: $specialwhite;
+            background-color: $specialpurple;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-family: $specialfont;
+
+            &:hover {
+                background-color: $specialblue;
+                transform: scale(1.05);
+            }
+        }
+    }
+}
