@@ -7,15 +7,15 @@ const typeDefs = gql`
     email: String
   }
 
-  # type Artwork {
-  #   _id: ID
-  #   title: String
-  #   description: String
-  #   imageUrl: String
-  #   artist: User
-  #   createdAt: String
-  #   # comments: [Comment]
-  # }
+  type Artwork {
+    _id: ID
+    title: String
+    description: String
+    imageUrl: String
+    artist: User
+    date: String
+    # comments: [Comment]
+  }
 
   type Response {
     message: String
@@ -28,8 +28,8 @@ const typeDefs = gql`
 
   type Query {
     getUser: AuthResponse
-    # getArtwork(id: ID): Artwork
-    # getAllArtworks: [Artwork]
+    getArtwork(id: ID): Artwork
+    getAllArtwork: [Artwork]
   }
 
   type Mutation {
@@ -39,9 +39,9 @@ const typeDefs = gql`
     logoutUser: AuthResponse
 
     # # Artwork Mutations
-    # addArtwork(title: String!, description: String, imageUrl: String!): Artwork
-    # updateArtwork(id: ID!, title: String, description: String, imageUrl: String): Artwork
-    # deleteArtwork(id: ID!): Response
+    addArtwork(title: String!, description: String, imageUrl: String!, artist: String, date: String): Artwork
+    updateArtwork(id: ID!, title: String, description: String, imageUrl: String): Artwork
+    deleteArtwork(id: ID!): Response
 
   }
 `;
