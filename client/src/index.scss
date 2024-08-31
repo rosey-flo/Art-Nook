@@ -48,11 +48,12 @@ button {
 
 //  Custom Styles
 
+// Header
 header {
     padding: 10px 5%;
 
     h1 {
-        font-size: 26px;
+        font-size: 8vh;
         font-family: $specialfont;
     }
 
@@ -81,7 +82,42 @@ header {
     padding: 25px 20px;
 }
 
+
+
 // Main Gallery
+
+// Artwork form + upload
+
+.upload-widget {
+    border: 3px solid lightgray;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
+    height: 50vh;
+    width: 60%;
+
+    .upload-btn {
+        border: 2ps solid grey;
+        width: 60%;
+    }
+}
+
+.artwork-form {
+    border: 3px solid lightgray;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
+    height: 50vh;
+    width: 60%;
+
+    button {
+        background-color: $specialpurple;
+        color: whitesmoke;
+        font-weight: bold;
+
+        &:hover {
+            background-color: $specialpink;
+        }
+    }
+}
+
+// Dashboard
 
 
 // AuthForm Styles
@@ -93,10 +129,11 @@ form {
     >* {
         padding: 6px 6px;
         margin-bottom: 6px;
-        border-radius: 4px;
+        border-radius: 5px;
+        border-color: lightgray;
 
-        &:forcus {
-            outline: 3px solid $specialpurple;
+        &:focus {
+            outline: 3px solid $specialpurple !important;
         }
     }
 

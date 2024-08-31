@@ -79,37 +79,37 @@ const ArtForm = () => {
             {!showForm ? (
                 //     {/* Cloudinary Widget */}
 
-                <div className="row justify-content-center">
-                    <UploadWidget onUpload={handleUpload}>
-                        {({ open }) => {
-                            function handleOnClick(e) {
-                                e.preventDefault();
-                                open();
-                            }
-                            return (
-                                <button class="position-absolute top-50 col-3" id="upload-image-btn" onClick={handleOnClick}>
-                                    Upload an Image
-                                </button>
-                            )
-                        }}
-                    </UploadWidget>
+                <div className='d-flex align-items-center justify-content-center'>
+                    <div className='d-flex align-items-center justify-content-center rounded m-5 upload-widget'>
+                        <UploadWidget onUpload={handleUpload}>
+                            {({ open }) => {
+                                function handleOnClick(e) {
+                                    e.preventDefault();
+                                    open();
+                                }
+                                return (
+                                    <button onClick={handleOnClick} className='upload-btn d-flex p-4 rounded'>
+                                        Click here to upload your artwork image.
+                                    </button>
+                                )
+                            }}
+                        </UploadWidget>
+                    </div>
                 </div>
             ) : (
-                <form >
-                    <div className="mb-3">
-                        <label className="form-label">Artwork Title</label>
-                        <input onChange={handleInputChange} name="title" value={formData.title} type="text" />
+                <form className='artwork-form d-flex flex-column'>
+                    <div className="d-flex flex-column mb-2">
+                        <label className="form-label d-flex flex-column p-3">Enter some information about the artwork you uploaded: </label>
+                        <input className='input-group-text p-1 mx-5' onChange={handleInputChange} name="title" placeholder='artwork title' value={formData.title} type="text" />
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Description</label>
-                        <input onChange={handleInputChange} name="description" value={formData.description} type="text" />
+                    <div className="d-flex flex-column mb-2">
+                        <textarea className=' input-group-text p-1 mx-5' onChange={handleInputChange} name="description" placeholder='enter a description of your artwork' value={formData.description} type="text" />
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Month & Year Art was Created:</label>
-                        <input onChange={handleInputChange} name="date" type="text" value={formData.date} placeholder="MM/YYYY" />
+                    <div className="d-flex flex-column mb-2">
+                        <input className='input-group-text p-1 mx-5' onChange={handleInputChange} name="date" type="text" value={formData.date} placeholder="enter the date the piece was created" />
                     </div>
 
-                    <button onClick={handleSubmit} className="btn btn-primary">Submit</button>
+                    <button onClick={handleSubmit} className="btn mt-3">Submit</button>
                 </form>
 
             )}
