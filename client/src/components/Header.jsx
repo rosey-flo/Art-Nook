@@ -23,16 +23,16 @@ function Header(props) {
     }
 
     return (
-        <header className="header d-flex flex-row justify-content-between align-items-center mb-3 p-4">
+        <header className="header d-flex flex-row justify-content-between align-items-center p-4">
             <NavLink to="/">
-                <h1 className="text-center mb-3">Art Nook</h1>
+                <h1 className="text-center">Art Nook</h1>
             </NavLink>
 
             {props.user ? (
-                <div className='row align-center'>
+                <div className='d-flex flex-row justify-content-between align-items-center  p-4'>
                     <p>Welcome, {props.user.username}</p>
-                    <NavLink to="/dashboard" className="dash-link">Dashboard</NavLink>
-                    <button onClick={handleLogout}>log out</button>
+                    <NavLink to="/dashboard" className="dash-link me-3">Dashboard</NavLink>
+                    <button className='py-1 px-2' onClick={handleLogout}>log out</button>
                 </div>
             ) : (
                 <nav>
