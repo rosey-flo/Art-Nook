@@ -29,10 +29,18 @@ function Header(props) {
             </NavLink>
 
             {props.user ? (
-                <div className='row align-center'>
-                    <p>Welcome, {props.user.username}</p>
-                    <NavLink to="/dashboard" className="dash-link">Dashboard</NavLink>
-                    <button onClick={handleLogout}>log out</button>
+                <div className="container">
+                    <div className= "row">
+                        <div className="row justify-content-end">
+                        <p className="col-2 mr-0">Welcome, {props.user.username}</p>
+                        </div>
+                    <div className="row justify-content-end column-gap-4">
+                        <button className="btn btn-secondary btn-sm col-2">
+                        <NavLink className=" nav-link" to="/dashboard">Dashboard</NavLink>
+                        </button>
+                        <button class="btn btn-secondary btn-sm col-2" onClick={handleLogout}>Log out</button>
+                    </div>
+                    </div>
                 </div>
             ) : (
                 <nav>

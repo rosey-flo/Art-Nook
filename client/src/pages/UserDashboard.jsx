@@ -58,7 +58,7 @@ function UserDashboard() {
 
     return (
 
-        <div>
+        <div className="container">
             <ArtForm />
 
 

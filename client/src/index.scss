@@ -57,7 +57,8 @@ header {
     }
 
     p {
-        margin-right: 20px;
+        margin-right: 0px;
+        padding-right: 0px !important;
     }
 
     nav {
@@ -71,6 +72,13 @@ header {
             }
         }
     }
+    .nav-link {
+       color: white;
+    }
+
+}
+#upload-image-btn {
+    padding: 25px 20px;
 }
 
 // Main Gallery

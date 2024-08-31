@@ -79,7 +79,7 @@ const ArtForm = () => {
             {!showForm ? (
                 //     {/* Cloudinary Widget */}
 
-                <div>
+                <div className="row justify-content-center">
                     <UploadWidget onUpload={handleUpload}>
                         {({ open }) => {
                             function handleOnClick(e) {
@@ -87,7 +87,7 @@ const ArtForm = () => {
                                 open();
                             }
                             return (
-                                <button onClick={handleOnClick}>
+                                <button class="position-absolute top-50 col-3" id="upload-image-btn" onClick={handleOnClick}>
                                     Upload an Image
                                 </button>
                             )
