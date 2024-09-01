@@ -35,7 +35,7 @@ const resolvers = {
       };
     },
 
-    async getArtwork(_, args, context) {
+    async getUserArtwork(_, args, context) {
       const user_id = context.user_id;
 
       if (!user_id) {
@@ -49,8 +49,9 @@ const resolvers = {
       return user.artwork;
     },
 
+
     async getAllArtwork() {
-      const artwork = await Artwork.find().populate('user')
+      const artwork = await Artwork.find().populate('artist')
 
       return artwork;
     }
@@ -118,7 +119,7 @@ const resolvers = {
       }
     },
 
-    // Turtle Resolvers
+    // Artwork Resolvers
 
     async addArtwork(_, args, context) {
       const user_id = context.user_id;
