@@ -28,7 +28,7 @@ const typeDefs = gql`
 
   type Query {
     getUser: AuthResponse
-    getArtwork(id: ID): Artwork
+    getUserArtwork(id: ID): [Artwork]
     getAllArtwork: [Artwork]
   }
 

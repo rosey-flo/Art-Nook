@@ -2,9 +2,9 @@ import { useState } from "react"
 import { useMutation, useQuery } from "@apollo/client"
 
 // import { ADD_ARTWORK, DELETE_ARTWORK } from "../graphql/mutations"
-// import { GET_USER_ARTWORK, GET_ALL_ARTWORK } from "../graphql/queries"
+import { GET_USER_ARTWORK } from "../graphql/queries"
 
-// import ArtItem from "../components/ArtItem";
+import ArtItem from "../components/ArtItem";
 import ArtForm from "../components/ArtForm";
 
 
@@ -36,30 +36,48 @@ function UserDashboard() {
     //     })
     // }
 
-    // const handleSubmit = async event => {
-    //     event.preventDefault()
+    const { data } = useQuery(GET_USER_ARTWORK)
 
-    //     const res = await addArtwork()
 
-    //     console.log(res)
 
-    //     setFormData({
-    //         ...initialFormData
-    //     })
-    // }
 
-    // const handleArtwork = async (id) => {
-    //     await deleteArtwork({
-    //         variables: {
-    //             artwork_id: id
-    //         }
-    //     })
-    // }
+
+
+
+
+    const handleSubmit = async event => {
+        event.preventDefault()
+
+        const res = await addArtwork()
+
+        console.log(res)
+
+        setFormData({
+            ...initialFormData
+        })
+    }
+
+    const handleArtwork = async (id) => {
+        await deleteArtwork({
+            variables: {
+                artwork_id: id
+            }
+        })
+    }
 
     return (
 
-        <div>
+        <div className="container">
             <ArtForm />
+
+            <section id="art-output">
+
+                {data?.getUserArtwork.map((art, index) => (
+                    <ArtItem key={index} art={art} />
+                ))}
+
+
+            </section>
 
 
         </div>
