@@ -82,10 +82,6 @@ header {
     padding: 25px 20px;
 }
 
-
-
-// Main Gallery
-
 // Artwork form + upload
 
 .upload-widget {
@@ -117,8 +113,20 @@ header {
     }
 }
 
-// Dashboard
+// Main Gallery
 
+//Art-Item
+
+.card-body {
+    button {
+        background-color: #E4E2DD;
+        border-color: #E4E2DD;
+        &.active, &:hover {
+            background-color: $specialblue;
+            border-color: $specialblue;
+        }
+    }
+}
 
 // AuthForm Styles
 
