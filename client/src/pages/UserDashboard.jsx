@@ -8,14 +8,8 @@ import ArtItem from "../components/ArtItem";
 import ArtForm from "../components/ArtForm";
 
 
-const initialFormData = {
-    name: '',
-    weapon: '',
-    headbandColor: ''
-}
 
 function UserDashboard() {
-
 
     const { data } = useQuery(GET_USER_ARTWORK)
 
@@ -46,7 +40,9 @@ function UserDashboard() {
                 <ArtForm />
             </div>
 
+
             <section id="art-output" className="container text-center">
+
 
                 <div className="row">
                     {data?.getUserArtwork.map((art, index) => (

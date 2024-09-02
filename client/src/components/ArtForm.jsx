@@ -16,25 +16,32 @@ const initialFormData = {
     errorMessage: ''
 }
 
-const ArtForm = () => {
+const ArtForm = ({ onArtAdded }) => {
     const [showForm, setShowForm] = useState(false)
     const [formData, setFormData] = useState(initialFormData);
 
     const [addArtwork] = useMutation(ADD_ARTWORK, {
         variables: formData,
-        // refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
+        onCompleted: () => {
+            setFormData(initialFormData);  // Reset form data
+            onArtAdded();  // Notify parent component
+        },
+        onError: (error) => {
+            console.error(error);
+            setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
+        }
     })
 
+    
+    
     const handleInputChange = event => {
-
         setFormData(prevState => ({
-            ...formData,
+            ...prevState,
             [event.target.name]: event.target.value
-        }))
+        }));
     }
-
+    
     const handleSubmit = async event => {
-
         event.preventDefault()
 
         console.log(formData)
@@ -48,33 +55,22 @@ const ArtForm = () => {
 
             window.location.reload();
         }
-    }
 
+    
     const handleUpload = (error, result, widget) => {
         if (error) {
-            // updateError(error);
-            console.log(error)
-
-            setFormData({
-                ...formData,
-                errorMessage: error.message
-            })
-
-            widget.close({
-                quiet: true
-            });
-
+            setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
+            widget.close({ quiet: true });
             return;
         }
-
-        setFormData({
-            ...formData,
+        setFormData(prevState => ({
+            ...prevState,
             imageUrl: result.info.secure_url
-        })
-
-        setShowForm(true)
-
+        }));
+        setShowForm(true);
     };
+    
+  
 
     return (
         <>
