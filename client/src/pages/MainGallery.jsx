@@ -17,7 +17,7 @@ function MainGallery() {
             </section>
 
 
-            <section id="main-gallery-output">
+            <section id="main-gallery-output ">
 
                 {data?.getAllArtwork.map((art, index) => (
                     <ArtItem key={index} art={art}/>

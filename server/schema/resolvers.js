@@ -123,7 +123,7 @@ const resolvers = {
 
     async addArtwork(_, args, context) {
       const user_id = context.user_id;
-
+      
       if (!user_id) {
         throw new GraphQLError('You are not authorized to perform that action')
       }
@@ -131,7 +131,7 @@ const resolvers = {
       const user = await User.findById(user_id);
       const artwork = await Artwork.create({
         ...args,
-        user: user._id,
+        user: user._id
 				
       });
 
@@ -143,7 +143,7 @@ const resolvers = {
       return artwork.populate('artist')
     },
 
-    //EXTRA OPTIONAL TO UPDATE ARTWORK
+    //UPDATE ARTWORK
     async updateArtwork(_, args, context) {
       const user_id = context.user_id;
 			console.log(args)
