@@ -79,23 +79,23 @@ const ArtForm = () => {
             {!showForm ? (
                 //     {/* Cloudinary Widget */}
 
-                <div className='d-flex align-items-center justify-content-center'>
-                    <div className='d-flex align-items-center justify-content-center rounded m-5 upload-widget'>
-                        <UploadWidget onUpload={handleUpload}>
-                            {({ open }) => {
-                                function handleOnClick(e) {
-                                    e.preventDefault();
-                                    open();
-                                }
-                                return (
-                                    <button onClick={handleOnClick} className='upload-btn d-flex p-4 rounded'>
-                                        Click here to upload your artwork image.
-                                    </button>
-                                )
-                            }}
-                        </UploadWidget>
-                    </div>
+
+                <div className='d-flex align-items-center justify-content-center rounded m-5 upload-widget'>
+                    <UploadWidget onUpload={handleUpload}>
+                        {({ open }) => {
+                            function handleOnClick(e) {
+                                e.preventDefault();
+                                open();
+                            }
+                            return (
+                                <button onClick={handleOnClick} className='btn upload-btn d-flex p-4 rounded'>
+                                    Upload Artwork
+                                </button>
+                            )
+                        }}
+                    </UploadWidget>
                 </div>
+
             ) : (
                 <form className='artwork-form d-flex flex-column'>
                     <div className="d-flex flex-column mb-2">

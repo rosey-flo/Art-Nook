@@ -3,26 +3,26 @@ import { useQuery } from "@apollo/client"
 
 import ArtItem from "../components/ArtItem"
 
-import { GET_ALL_ARTWORK} from "../graphql/queries"
+import { GET_ALL_ARTWORK } from "../graphql/queries"
 
 
 function MainGallery() {
 
-    const { data} = useQuery(GET_ALL_ARTWORK)
+    const { data } = useQuery(GET_ALL_ARTWORK)
 
     return (
         <>
             <section>
-                <h1>Main Gallery</h1>
+                <h1 className="main-gallery basicfont text-center">Main Gallery</h1>
             </section>
 
 
             <section id="main-gallery-output">
 
                 {data?.getAllArtwork.map((art, index) => (
-                    <ArtItem key={index} art={art}/>
+                    <ArtItem key={index} art={art} />
                 ))}
-               
+
 
             </section>
         </>
