@@ -15,47 +15,22 @@ const initialFormData = {
 }
 
 function UserDashboard() {
-    // const [formData, setFormData] = useState(initialFormData)
-    // const [addArtwork] = useMutation(ADD_ARTWORK, {
-    //     variables: formData,
-    //     refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
-    // })
-    // const [deleteArtwork] = useMutation(DELETE_ARTWORK, {
-    //     refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
-    // })
-    // const { data: artworkData } = useQuery(GET_USER_ARTWORK)
 
-    // if (artworkDataData) {
-    //     console.log(addArtworkData)
-    // }
-
-    // const handleInputChange = event => {
-    //     setFormData({
-    //         ...formData,
-    //         [event.target.name]: event.target.value
-    //     })
-    // }
 
     const { data } = useQuery(GET_USER_ARTWORK)
 
 
+    // const handleSubmit = async event => {
+    //     event.preventDefault()
 
+    //     const res = await addArtwork()
 
+    //     console.log(res)
 
-
-
-
-    const handleSubmit = async event => {
-        event.preventDefault()
-
-        const res = await addArtwork()
-
-        console.log(res)
-
-        setFormData({
-            ...initialFormData
-        })
-    }
+    //     setFormData({
+    //         ...initialFormData
+    //     })
+    // }
 
     // const handleArtwork = async (id) => {
     //     await deleteArtwork({
@@ -67,7 +42,7 @@ function UserDashboard() {
 
     return (
         <>
-            <div className="container">
+            <div>
                 <ArtForm />
             </div>
 

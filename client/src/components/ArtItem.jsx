@@ -2,15 +2,12 @@ import trashicon from 'bootstrap-icons/icons/trash3.svg'
 
 import { useMutation } from "@apollo/client"
 
+import { GET_USER_ARTWORK } from '../graphql/queries'
 import { DELETE_ARTWORK } from "../graphql/mutations"
 
 function ArtItem({ art }) {
 
     const [deleteArtwork] = useMutation(DELETE_ARTWORK)
-
-    // {
-    //     refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
-    // }
 
     const handleDelete = async (event) => {
         const id = event.target.id
@@ -19,7 +16,8 @@ function ArtItem({ art }) {
             await deleteArtwork({
                 variables: {
                     deleteArtworkId: id
-                }
+                },
+                refetchQueries: [{ query: GET_USER_ARTWORK }]
             })
         } catch (error) {
             console.log(error)

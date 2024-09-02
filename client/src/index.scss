@@ -32,13 +32,16 @@ $specialwhite: #E4E2DD;
     font-family: sans-serif;
 }
 
-html,
-body,
-#root {
-    height: 100%;
+html {
+    min-height: 100% !important;
+    display: flex;
+}
+
+body {
     background-image: url('../public/images/gradient-purple-top.png');
     background-size: cover;
-    background-repeat: none;
+    background-repeat: no-repeat;
+    flex: 1;
 }
 
 a {
@@ -131,23 +134,29 @@ header {
 
 .upload-widget {
     .upload-btn {
-        background-color: $specialpink;
+        background-color: $specialorange;
         color: $specialwhite;
+        font-size: 1.25rem;
+        font-weight: bold;
         box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
         text-align: center;
     }
 }
 
 .artwork-form {
+
+    background-color: $specialwhite;
     border: 3px solid lightgray;
     box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
     height: 50vh;
-    width: 60%;
+    width: 75%;
+    margin: 0px auto;
 
     button {
         background-color: $specialpurple;
         color: whitesmoke;
         font-weight: bold;
+        width: 25%;
 
         &:hover {
             background-color: $specialpink;
@@ -160,8 +169,8 @@ header {
 
 // AuthForm Styles
 
-form {
-    width: 400px;
+.authform {
+    width: 75%;
     margin: 0px auto;
 
     >* {
@@ -252,6 +261,35 @@ form {
             &:hover {
                 background-color: $specialblue;
                 transform: scale(1.05);
+            }
+        }
+    }
+}
+
+// media queries
+
+@media(min-width: 950px) {
+    .artwork-form {
+        width: 40%;
+    }
+}
+
+@media(max-width: 600px) {
+    .header {
+        display: flex;
+        flex-direction: column !important;
+
+        h1 {
+            font-size: 3rem !important;
+            text-align: center;
+        }
+
+        nav a {
+            font-size: 1.5rem;
+
+            &.active,
+            &:hover {
+                font-size: 1.75rem;
             }
         }
     }

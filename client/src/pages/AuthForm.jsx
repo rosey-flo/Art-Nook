@@ -70,7 +70,7 @@ function AuthForm(props) {
     return (
         <>
 
-            <form onSubmit={handleSubmit} className="d-flex flex-column mt-3">
+            <form onSubmit={handleSubmit} className="authform d-flex flex-column mt-3">
                 <h2 className="text-center basicfont white-font">{formData.isLogin ? 'Login' : 'Register'} </h2>
 
                 {formData.errorMessage && <p className="error-message text-center">{formData.errorMessage}</p>}

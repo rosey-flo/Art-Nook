@@ -17,12 +17,16 @@ function MainGallery() {
             </section>
 
 
-            <section id="main-gallery-output">
+            <section id="main-gallery-output" className="container text-center">
 
-                {data?.getAllArtwork.map((art, index) => (
-                    <ArtItem key={index} art={art} />
-                ))}
+                <div className="row">
+                    {data?.getAllArtwork.map((art, index) => (
+                        <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
+                            <ArtItem art={art} />
+                        </div>
+                    ))}
 
+                </div>
 
             </section>
         </>
