@@ -231,7 +231,10 @@ header {
     font-family: $specialfont;
 
     // Background Image
-    background-image: url('../assets/images/backgroundImage.png');
+    background-image: url('../public/images/backgroundImage.png');
+    background-size: 99.99% 99.99%;
+    background-position: center;
+    background-repeat: no-repeat;
 
     &.fade-out {
         opacity: 0;

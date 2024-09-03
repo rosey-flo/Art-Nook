@@ -1,4 +1,3 @@
-
 import trashicon from 'bootstrap-icons/icons/trash3.svg'
 
 import { useMutation } from "@apollo/client"
@@ -25,7 +24,6 @@ function ArtItem({ art, main }) {
         }
 
     }
-
 
     return (
 
@@ -55,5 +53,6 @@ function ArtItem({ art, main }) {
 
     )
 }
+
 
 export default ArtItem
