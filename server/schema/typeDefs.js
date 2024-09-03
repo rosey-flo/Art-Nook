@@ -39,7 +39,7 @@ const typeDefs = gql`
     logoutUser: AuthResponse
 
     # # Artwork Mutations
-    addArtwork(title: String!, description: String, imageUrl: String!, artist: String, date: String): Artwork
+    addArtwork(title: String!, description: String, imageUrl: String!, date: String): Artwork
     updateArtwork(id: ID!, title: String, description: String, imageUrl: String): Artwork
     deleteArtwork(id: ID!): Response
 
