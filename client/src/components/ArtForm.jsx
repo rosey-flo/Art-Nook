@@ -55,44 +55,41 @@ const ArtForm = ({ onArtAdded }) => {
 
             window.location.reload();
         }
+    }
 
-
-        const handleUpload = (error, result, widget) => {
-            if (error) {
-                setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
-                widget.close({ quiet: true });
-                return;
-            }
-            setFormData(prevState => ({
-                ...prevState,
-                imageUrl: result.info.secure_url
-            }));
-            setShowForm(true);
-        };
-
-
+    const handleUpload = (error, result, widget) => {
+        if (error) {
+            setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
+            widget.close({ quiet: true });
+            return;
+        }
+        setFormData(prevState => ({
+            ...prevState,
+            imageUrl: result.info.secure_url
+        }));
+        setShowForm(true);
+    };
 
         return (
             <>
                 {!showForm ? (
                     //     {/* Cloudinary Widget */}
 
-
-                    <div className='d-flex align-items-center justify-content-center rounded m-5 upload-widget'>
-                        <UploadWidget onUpload={handleUpload}>
-                            {({ open }) => {
-                                function handleOnClick(e) {
-                                    e.preventDefault();
-                                    open();
-                                }
-                                return (
-                                    <button onClick={handleOnClick} className='btn upload-btn d-flex p-4 rounded'>
-                                        Upload Artwork
-                                    </button>
-                                )
-                            }}
-                        </UploadWidget>
-                    </div>
+                <div className='d-flex align-items-center justify-content-center rounded mb-4 upload-widget'>
+                    <UploadWidget onUpload={handleUpload}>
+                        {({ open }) => {
+                            function handleOnClick(e) {
+                                e.preventDefault();
+                                open();
+                            }
+                            return (
+                                <button onClick={handleOnClick} className='btn upload-btn d-flex p-4 rounded'>
+                                    Upload Artwork
+                                </button>
+                            )
+                        }}
+                    </UploadWidget>
+                </div>
 
                 ) : (
                     <form className='artwork-form d-flex flex-column justify-content-center  mb-5'>
@@ -114,10 +111,10 @@ const ArtForm = ({ onArtAdded }) => {
 
                 )}
 
-            </>
-        );
-    }
-};
+        </>
+    );
+}
+
 
 export default ArtForm;
 
