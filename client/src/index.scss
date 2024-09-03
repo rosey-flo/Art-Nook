@@ -231,6 +231,9 @@ header {
 
     // Background Image
     background-image: url('../public/images/backgroundImage.png');
+    background-size: 99.99% 99.99%;
+    background-position: center;
+    background-repeat: no-repeat;
 
     &.fade-out {
         opacity: 0;

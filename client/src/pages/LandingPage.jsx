@@ -19,8 +19,7 @@ const LandingPage = () => {
     return (
         <div className={`landing-page ${fadeOut ? 'fade-out' : ''}`}>
             <nav className="top-nav">
-                <NavLink className="nav-link" to="/login">Login</NavLink>
-                <NavLink className="nav-link" to="/login">Register</NavLink>
+                
             </nav>
             <div className="center-content">
                 <button className="enter-button" onClick={handleEnterGallery}>Enter Gallery</button>
