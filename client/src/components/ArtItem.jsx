@@ -6,7 +6,7 @@ import { useMutation } from "@apollo/client"
 import { GET_USER_ARTWORK } from '../graphql/queries'
 import { DELETE_ARTWORK } from "../graphql/mutations"
 
-function ArtItem({ art }) {
+function ArtItem({ art, main }) {
 
     const [deleteArtwork] = useMutation(DELETE_ARTWORK)
 
