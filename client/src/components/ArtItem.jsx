@@ -1,3 +1,4 @@
+
 import trashicon from 'bootstrap-icons/icons/trash3.svg'
 
 import { useMutation } from "@apollo/client"
@@ -28,6 +29,7 @@ function ArtItem({ art }) {
 
     return (
 
+
         <div className="card mb-3 d-flex align-items-stretch">
             <div className="card-body text-center d-flex flex-column justify-content-between">
 
@@ -43,8 +45,14 @@ function ArtItem({ art }) {
 
                 <img style={{ height: '1.5rem' }} src={trashicon} id={art._id} onClick={handleDelete} />
 
+                {/* <span className="insta-label m-3">Instagram Link</span>
+                        <a href={art.data?.githubRepo} target="_blank">
+
+                        </a> */}
+
             </div>
         </div>
+
     )
 }
 
