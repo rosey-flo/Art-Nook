@@ -6,12 +6,17 @@
         url('/assets/fonts/Null-Normal.woff') format('woff')
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+
 
 // Sass Variables
 
 $specialfont: 'Null',
     Helvetica,
     Arial,
+    sans-serif;
+
+$basicfont: "Rammetto One",
     sans-serif;
 
 $specialblue: #8E53FA;
@@ -27,14 +32,20 @@ $specialwhite: #E4E2DD;
     font-family: sans-serif;
 }
 
-html,
-body,
-#root {
-    height: 100%;
+html {
+    min-height: 100% !important;
+    display: flex;
+}
+
+body {
+    background-image: url('../public/images/gradient-purple-top.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex: 1;
 }
 
 a {
-    color: $specialpurple;
+    color: $specialwhite;
     text-decoration: none;
 }
 
@@ -46,6 +57,22 @@ button {
     cursor: pointer;
 }
 
+// Global styles
+
+.spfont {
+    font-family: $specialfont;
+    font-size: 6vh;
+    color: $specialwhite;
+}
+
+.basicfont {
+    font-family: $basicfont;
+}
+
+.white-font {
+    color: $specialwhite;
+}
+
 //  Custom Styles
 
 // Header
@@ -53,59 +80,82 @@ header {
     padding: 10px 5%;
 
     h1 {
-        font-size: 8vh;
-        font-family: $specialfont;
+        font-size: 8vh !important;
+        font-family: $specialwhite;
     }
 
-    p {
-        margin-right: 0px;
-        padding-right: 0px !important;
-    }
+
 
     nav {
         a {
-            color: $specialpurple;
+            color: $specialwhite;
             margin-left: 20px;
 
-            &.active,
-            &:hover {
+
+            &.active {
                 text-decoration: underline;
+
+                &:hover {
+                    color: $specialorange;
+                }
             }
+
         }
     }
+
     .nav-link {
-       color: white;
+        color: $specialwhite;
+    }
+
+    .btn {
+        background-color: $specialwhite;
     }
 
 }
-#upload-image-btn {
-    padding: 25px 20px;
+
+
+// Main Gallery
+.main-gallery {
+    color: $specialwhite;
+}
+
+#art-output {
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+
+    img {
+        // aspect-ratio: 1/1;
+        height: 100%;
+    }
 }
 
 // Artwork form + upload
 
 .upload-widget {
-    border: 3px solid lightgray;
-    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
-    height: 50vh;
-    width: 60%;
-
     .upload-btn {
-        border: 2ps solid grey;
-        width: 60%;
+        background-color: $specialorange;
+        color: $specialwhite;
+        font-size: 1.25rem;
+        font-weight: bold;
+        box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
     }
 }
 
 .artwork-form {
+
+    background-color: $specialwhite;
     border: 3px solid lightgray;
     box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
     height: 50vh;
-    width: 60%;
+    width: 75%;
+    margin: 0px auto;
 
     button {
         background-color: $specialpurple;
         color: whitesmoke;
         font-weight: bold;
+        width: 25%;
 
         &:hover {
             background-color: $specialpink;
@@ -130,8 +180,8 @@ header {
 
 // AuthForm Styles
 
-form {
-    width: 400px;
+.authform {
+    width: 75%;
     margin: 0px auto;
 
     >* {
@@ -153,9 +203,11 @@ form {
     }
 
     span {
+
+
         &:hover {
             text-decoration: underline;
-            color: $specialpurple;
+            color: $specialorange;
             cursor: pointer;
         }
     }
@@ -224,3 +276,34 @@ form {
         }
     }
 }
+
+
+// media queries
+
+@media(min-width: 950px) {
+    .artwork-form {
+        width: 40%;
+    }
+}
+
+@media(max-width: 600px) {
+    .header {
+        display: flex;
+        flex-direction: column !important;
+
+        h1 {
+            font-size: 3rem !important;
+            text-align: center;
+        }
+
+        nav a {
+            font-size: 1.5rem;
+
+            &.active,
+            &:hover {
+                font-size: 1.75rem;
+            }
+        }
+    }
+}
+

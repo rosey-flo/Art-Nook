@@ -70,8 +70,8 @@ function AuthForm(props) {
     return (
         <>
 
-            <form onSubmit={handleSubmit} className="d-flex flex-column mt-3">
-                <h2 className="text-center">{formData.isLogin ? 'Login' : 'Register'} </h2>
+            <form onSubmit={handleSubmit} className="authform d-flex flex-column mt-3">
+                <h2 className="text-center basicfont white-font">{formData.isLogin ? 'Login' : 'Register'} </h2>
 
                 {formData.errorMessage && <p className="error-message text-center">{formData.errorMessage}</p>}
 
@@ -83,7 +83,7 @@ function AuthForm(props) {
                 <button>Submit</button>
 
                 {formData.isLogin ? (
-                    <p className="text-center">Need to Register? <span onClick={() => toggleForm(false)}>Click Here</span> </p>
+                    <p className="text-center white-font">Need to Register? <span onClick={() => toggleForm(false)}>Click Here</span> </p>
                 ) : (
                     <p className="text-center">Already Registered? <span onClick={() => toggleForm(true)}>Click Here</span> </p>
                 )}

@@ -11,7 +11,7 @@ query GetUser {
   }
 }`
 
-export const GET_ALL_ARTWORK = gql `
+export const GET_ALL_ARTWORK = gql`
 query GetAllArtwork {
   getAllArtwork {
     _id
@@ -29,6 +29,7 @@ query GetAllArtwork {
 export const GET_USER_ARTWORK = gql`
 query GetUserArtwork($getUserArtworkId: ID) {
   getUserArtwork(id: $getUserArtworkId) {
+    _id
     date
     description
     imageUrl
