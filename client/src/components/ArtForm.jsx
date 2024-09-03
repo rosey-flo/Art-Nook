@@ -32,15 +32,15 @@ const ArtForm = ({ onArtAdded }) => {
         }
     })
 
-    
-    
+
+
     const handleInputChange = event => {
         setFormData(prevState => ({
             ...prevState,
             [event.target.name]: event.target.value
         }));
     }
-    
+
     const handleSubmit = async event => {
         event.preventDefault()
 
@@ -55,8 +55,8 @@ const ArtForm = ({ onArtAdded }) => {
 
             window.location.reload();
         }
+    }
 
-    
     const handleUpload = (error, result, widget) => {
         if (error) {
             setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
@@ -69,16 +69,13 @@ const ArtForm = ({ onArtAdded }) => {
         }));
         setShowForm(true);
     };
-    
-  
 
     return (
         <>
             {!showForm ? (
                 //     {/* Cloudinary Widget */}
 
-
-                <div className='d-flex align-items-center justify-content-center rounded m-5 upload-widget'>
+                <div className='d-flex align-items-center justify-content-center rounded mb-4 upload-widget'>
                     <UploadWidget onUpload={handleUpload}>
                         {({ open }) => {
                             function handleOnClick(e) {
@@ -116,7 +113,8 @@ const ArtForm = ({ onArtAdded }) => {
 
         </>
     );
-};
+}
+
 
 export default ArtForm;
 
