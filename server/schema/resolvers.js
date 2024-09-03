@@ -53,6 +53,7 @@ const resolvers = {
     async getAllArtwork() {
       const artwork = await Artwork.find().populate('artist')
 
+
       return artwork;
     }
   },
@@ -131,14 +132,13 @@ const resolvers = {
       const user = await User.findById(user_id);
       const artwork = await Artwork.create({
         ...args,
-        user: user._id
+        artist: user._id
 				
       });
 
       user.artwork.push(artwork._id);
       await user.save();
 
-			console.log(user)
 
       return artwork.populate('artist')
     },
@@ -146,7 +146,7 @@ const resolvers = {
     //UPDATE ARTWORK
     async updateArtwork(_, args, context) {
       const user_id = context.user_id;
-			console.log(args)
+
       if (!user_id) {
         throw new GraphQLError('You are not authorized to perform that action');
       }
@@ -167,7 +167,7 @@ const resolvers = {
       if (!user_id) {
         throw new GraphQLError('You are not authorized to perform that action')
       }
-			console.log(args)
+
       const user = await User.findById(user_id);
 
       if (!user.artwork.includes(args.id)) {

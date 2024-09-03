@@ -30,18 +30,10 @@ mutation LogoutUser {
 }`
 
 export const ADD_ARTWORK = gql`
-	mutation AddArtwork($title: String!, $description: String, $imageUrl: String!, $date: String, $artist: String) {
-  addArtwork(title: $title, description: $description, imageUrl: $imageUrl, date: $date, artist: $artist) {
+	mutation AddArtwork($title: String!, $description: String, $imageUrl: String!, $date: String) {
+  addArtwork(title: $title, description: $description, imageUrl: $imageUrl, date: $date) {
     _id
-    date
-    description
-    imageUrl
-    title
-    artist {
-      _id
-      email
-      username
-    }
+
   }
 }
 `
