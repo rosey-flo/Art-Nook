@@ -80,6 +80,7 @@ function ArtItem({art}) {
             </div>
         </div>
     )
+  }
 }
 
 export default ArtItem
