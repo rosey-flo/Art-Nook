@@ -123,7 +123,7 @@ const resolvers = {
 
     async addArtwork(_, args, context) {
       const user_id = context.user_id;
-      
+
       if (!user_id) {
         throw new GraphQLError('You are not authorized to perform that action')
       }
@@ -132,13 +132,13 @@ const resolvers = {
       const artwork = await Artwork.create({
         ...args,
         user: user._id
-				
+
       });
 
       user.artwork.push(artwork._id);
       await user.save();
 
-			console.log(user)
+      console.log(user)
 
       return artwork.populate('artist')
     },
@@ -146,18 +146,19 @@ const resolvers = {
     //UPDATE ARTWORK
     async updateArtwork(_, args, context) {
       const user_id = context.user_id;
-			console.log(args)
+      console.log(args)
       if (!user_id) {
         throw new GraphQLError('You are not authorized to perform that action');
       }
 
       const artwork = await Artwork.findById(args.id);
+      const user = await User.findById(context.user_id)
 
-      if (!artwork || !artwork.artist.equals(user_id)) {
+      if (!artwork || !user.artwork.includes(artwork._id)) {
         throw new GraphQLError('You can only update artworks you created');
       }
 
-      const updatedArtwork = await Artwork.findByIdAndUpdate(args.id, {title: args.title, description: args.description, imageUrl: args.imageUrl}, { new: true });
+      const updatedArtwork = await Artwork.findByIdAndUpdate(args.id, args, { new: true });
       return updatedArtwork;
     },
 
@@ -167,14 +168,14 @@ const resolvers = {
       if (!user_id) {
         throw new GraphQLError('You are not authorized to perform that action')
       }
-			console.log(args)
+      console.log(args)
       const user = await User.findById(user_id);
 
       if (!user.artwork.includes(args.id)) {
         throw new GraphQLError('You cannot delete an artwork that you did not add');
       }
 
-			
+
 
       await Artwork.deleteOne({
         _id: args.id

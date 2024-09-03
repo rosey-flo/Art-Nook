@@ -40,8 +40,8 @@ const typeDefs = gql`
 
     # # Artwork Mutations
     addArtwork(title: String!, description: String, imageUrl: String!, artist: String, date: String): Artwork
-    updateArtwork(id: ID!, title: String, description: String, imageUrl: String): Artwork
-    deleteArtwork(id: ID!): Response
+    updateArtwork(id: ID, title: String, description: String, imageUrl: String, date: String): Artwork
+    deleteArtwork(id: ID): Response
 
   }
 `;

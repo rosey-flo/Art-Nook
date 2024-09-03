@@ -25,6 +25,8 @@ $specialpink: #BE6DB1;
 $specialorange: #FB8F52;
 $specialwhite: #E4E2DD;
 
+// Resets
+
 * {
     margin: 0;
     padding: 0;
@@ -76,6 +78,14 @@ button {
 
 //  Custom Styles
 
+.enter-button {
+    font-family: $basicfont !important;
+
+    &:hover {
+        background-color: $specialpink !important;
+    }
+}
+
 // Header
 header {
     padding: 10px 5%;
@@ -111,7 +121,13 @@ header {
     }
 
     .btn {
-        background-color: $specialwhite;
+        background-color: $specialpurple;
+        color: $specialwhite;
+        font-weight: bold;
+
+        &:hover {
+            background-color: $specialpink;
+        }
     }
 
 }

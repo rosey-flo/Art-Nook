@@ -8,19 +8,28 @@ import { useMutation } from '@apollo/client'
 import UploadWidget from './UploadWidget';
 
 import { GET_USER_ARTWORK, GET_ALL_ARTWORK } from '../graphql/queries';
-import { ADD_ARTWORK, DELETE_ARTWORK } from '../graphql/mutations'
+import { ADD_ARTWORK, UPDATE_ARTWORK } from '../graphql/mutations'
 
-const initialFormData = {
-    title: '',
-    description: '',
-    imageUrl: '',
-    date: '',
-    errorMessage: ''
-}
 
-const ArtForm = () => {
-    const [showForm, setShowForm] = useState(false)
-    const [formData, setFormData] = useState(initialFormData);
+
+const ArtForm = ({
+    setFormData,
+    setShowForm,
+    setIsEdit,
+    formData,
+    initialFormData,
+    showForm,
+    isEdit }) => {
+
+    const [updateArtwork] = useMutation(UPDATE_ARTWORK, {
+        variables: formData,
+        onCompleted: () => {
+            setFormData(initialFormData);  // Reset form data
+            setShowForm(false)
+        },
+
+        refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
+    })
 
     const [addArtwork] = useMutation(ADD_ARTWORK, {
         variables: formData,
@@ -32,10 +41,8 @@ const ArtForm = () => {
             console.error(error);
             setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
         },
-        refetchQueries: [{ query: GET_USER_ARTWORK, GET_ALL_ARTWORK }]
+        refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
     })
-
-
 
     const handleInputChange = event => {
         setFormData(prevState => ({
@@ -47,8 +54,14 @@ const ArtForm = () => {
     const handleSubmit = async event => {
         event.preventDefault()
 
-        await addArtwork();
+        if (isEdit) {
+            await updateArtwork()
 
+            setIsEdit(false)
+
+            return
+        }
+        await addArtwork();
     }
 
     const handleUpload = (error, result, widget) => {
@@ -63,6 +76,10 @@ const ArtForm = () => {
         }));
         setShowForm(true);
     };
+
+    const handleCloseForm = () => {
+        setShowForm(false);
+    }
 
     return (
         <>
@@ -88,7 +105,7 @@ const ArtForm = () => {
             ) : (
                 <form className='artwork-form d-flex flex-column justify-content-center  mb-5'>
                     <div className="d-flex flex-column mb-2">
-                        <label className="form-label d-flex flex-column p-3 text-center">Enter some information about your artwork: </label>
+                        <label className="form-label d-flex flex-column p-3 text-center">{isEdit ? 'Update information for your artwork:' : 'Enter some information about your artwork: '}</label>
                         <input className='input-group-text p-1 mx-5' onChange={handleInputChange} name="title" placeholder='artwork title' value={formData.title} type="text" />
                     </div>
                     <div className="d-flex flex-column mb-2">
@@ -99,7 +116,9 @@ const ArtForm = () => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center'>
-                        <button onClick={handleSubmit} className="btn mt-3">Submit</button>
+                        <button onClick={handleSubmit} className="btn m-3">{isEdit ? 'Update' : 'Submit'}</button>
+
+                        <button onClick={handleCloseForm} className="btn m-3 ml-3">Close/Cancel</button>
                     </div>
                 </form>
 

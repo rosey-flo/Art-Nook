@@ -1,13 +1,17 @@
 import trashicon from 'bootstrap-icons/icons/trash3.svg'
+import pencilsquare from 'bootstrap-icons/icons/pencil-square.svg'
 
 import { useMutation } from "@apollo/client"
 
-import { GET_USER_ARTWORK } from '../graphql/queries'
+import { GET_ALL_ARTWORK, GET_USER_ARTWORK } from '../graphql/queries'
 import { DELETE_ARTWORK } from "../graphql/mutations"
 
-function ArtItem({ art, main }) {
+function ArtItem({ toggleEditMode, art, main }) {
+
 
     const [deleteArtwork] = useMutation(DELETE_ARTWORK)
+
+
 
     const handleDelete = async (event) => {
         const id = event.target.id
@@ -41,12 +45,13 @@ function ArtItem({ art, main }) {
                 {art.artist && (<p className="card-text"><small className="text-body-secondary">{art.artist.username}</small></p>)}
                 <p className="card-text"><small className="text-body-secondary">{art.date}</small></p>
 
-                {!main && (<img style={{ height: '1.5rem ' }} src={trashicon} id={art._id} onClick={handleDelete} />)}
+                <div className='d-flex justify-content-center'>
+                    {/* Delete btn */}
+                    {!main && (<img style={{ height: '1.5rem ' }} src={trashicon} id={art._id} onClick={handleDelete} className='mx-3' />)}
 
-                {/* <span className="insta-label m-3">Instagram Link</span>
-                        <a href={art.data?.githubRepo} target="_blank">
-
-                        </a> */}
+                    {/* EDit btn*/}
+                    {!main && (<img style={{ height: '1.5rem ' }} src={pencilsquare} id={art._id} onClick={() => toggleEditMode(art)} className='mx-3' />)}
+                </div>
 
             </div>
         </div>

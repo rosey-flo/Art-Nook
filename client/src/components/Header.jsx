@@ -24,7 +24,7 @@ function Header(props) {
 
     return (
         <header className="header d-flex flex-row justify-content-between align-items-center p-4">
-            <NavLink to="/">
+            <NavLink to="/homepage">
                 <h1 className="spfont text-center">art nook</h1>
             </NavLink>
 
