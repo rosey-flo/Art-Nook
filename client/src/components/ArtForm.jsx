@@ -26,7 +26,7 @@ const ArtForm = () => {
         variables: formData,
         onCompleted: () => {
             setFormData(initialFormData);  // Reset form data
-
+            setShowForm(false)
         },
         onError: (error) => {
             console.error(error);
@@ -47,17 +47,8 @@ const ArtForm = () => {
     const handleSubmit = async event => {
         event.preventDefault()
 
-        console.log(formData)
+        await addArtwork();
 
-        const res = await addArtwork();
-
-        if (res.data) {
-            setFormData({
-                ...initialFormData
-            })
-
-            window.location.reload();
-        }
     }
 
     const handleUpload = (error, result, widget) => {
