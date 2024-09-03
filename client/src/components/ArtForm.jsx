@@ -32,7 +32,7 @@ const ArtForm = () => {
             console.error(error);
             setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
         },
-        refetchQueries: [{ query: GET_USER_ARTWORK, GET_ALL_ARTWORK }]
+        refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
     })
 
 
