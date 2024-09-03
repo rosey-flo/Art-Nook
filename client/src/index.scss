@@ -230,7 +230,7 @@ header {
     font-family: $specialfont;
 
     // Background Image
-    background-image: url('../assets/images/backgroundImage.png');
+    background-image: url('../public/images/backgroundImage.png');
 
     &.fade-out {
         opacity: 0;
