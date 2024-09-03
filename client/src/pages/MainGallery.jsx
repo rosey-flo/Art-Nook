@@ -8,7 +8,7 @@ import { GET_ALL_ARTWORK} from "../graphql/queries"
 
 function MainGallery() {
 
-    const { data} = useQuery(GET_ALL_ARTWORK)
+    const { data } = useQuery(GET_ALL_ARTWORK)
 
     return (
         <>
