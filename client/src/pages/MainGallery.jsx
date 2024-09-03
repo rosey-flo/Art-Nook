@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client"
 
 import ArtItem from "../components/ArtItem"
 
-import { GET_ALL_ARTWORK} from "../graphql/queries"
+import { GET_ALL_ARTWORK } from "../graphql/queries"
 
 
 function MainGallery() {
@@ -13,16 +13,21 @@ function MainGallery() {
     return (
         <>
             <section>
-                <h1>Main Gallery</h1>
+                <h1 className="main-gallery basicfont text-center">Main Gallery</h1>
             </section>
 
 
-            <section id="main-gallery-output">
+            <section id="main-gallery-output" className="container text-center">
 
-                {data?.getAllArtwork.map((art, index) => (
-                    <ArtItem key={index} art={art}/>
-                ))}
-               
+
+                <div className="row">
+                    {data?.getAllArtwork.map((art, index) => (
+                        <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
+                            <ArtItem art={art} />
+                        </div>
+                    ))}
+
+                </div>
 
             </section>
         </>

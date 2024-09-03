@@ -8,81 +8,57 @@ import ArtItem from "../components/ArtItem";
 import ArtForm from "../components/ArtForm";
 
 
-const initialFormData = {
-    name: '',
-    weapon: '',
-    headbandColor: ''
-}
 
 function UserDashboard() {
-    // const [formData, setFormData] = useState(initialFormData)
-    // const [addArtwork] = useMutation(ADD_ARTWORK, {
-    //     variables: formData,
-    //     refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
-    // })
-    // const [deleteArtwork] = useMutation(DELETE_ARTWORK, {
-    //     refetchQueries: [GET_USER_ARTWORK, GET_ALL_ARTWORK]
-    // })
-    // const { data: artworkData } = useQuery(GET_USER_ARTWORK)
-
-    // if (artworkDataData) {
-    //     console.log(addArtworkData)
-    // }
-
-    // const handleInputChange = event => {
-    //     setFormData({
-    //         ...formData,
-    //         [event.target.name]: event.target.value
-    //     })
-    // }
 
     const { data } = useQuery(GET_USER_ARTWORK)
 
 
+    // const handleSubmit = async event => {
+    //     event.preventDefault()
 
+    //     const res = await addArtwork()
 
+    //     console.log(res)
 
+    //     setFormData({
+    //         ...initialFormData
+    //     })
+    // }
 
-
-
-    const handleSubmit = async event => {
-        event.preventDefault()
-
-        const res = await addArtwork()
-
-        console.log(res)
-
-        setFormData({
-            ...initialFormData
-        })
-    }
-
-    const handleArtwork = async (id) => {
-        await deleteArtwork({
-            variables: {
-                artwork_id: id
-            }
-        })
-    }
+    // const handleArtwork = async (id) => {
+    //     await deleteArtwork({
+    //         variables: {
+    //             artwork_id: id
+    //         }
+    //     })
+    // }
 
     return (
+        <>
+            <div>
+                <ArtForm />
+            </div>
 
-        <div className="container">
-            <ArtForm />
 
-            <section id="art-output">
+            <section id="art-output" className="container text-center">
 
-                {data?.getUserArtwork.map((art, index) => (
-                    <ArtItem key={index} art={art} />
-                ))}
 
+                <div className="row">
+                    {data?.getUserArtwork.map((art, index) => (
+                        <div className="col-sm-6 col-md-4 col-lg-3" key={index} >
+                            <ArtItem art={art} />
+                        </div>
+                    ))}
+
+                </div>
 
             </section>
 
 
-        </div>
 
 
+        </>
 
 
     )
