@@ -19,14 +19,14 @@ const LandingPage = () => {
     return (
         <div className={`landing-page ${fadeOut ? 'fade-out' : ''}`}>
             <nav className="top-nav">
-                
+
             </nav>
             <div className="center-content">
-                <button className="enter-button" onClick={handleEnterGallery}>Enter Gallery</button>
+                <button className="btn enter-button basicfont" onClick={handleEnterGallery}>Enter Gallery</button>
             </div>
-        </div>
+        </div >
     )
-    
+
 };
 
 export default LandingPage;
