@@ -23,7 +23,7 @@ function MainGallery() {
                 <div className="row">
                     {data?.getAllArtwork.map((art, index) => (
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
-                            <ArtItem art={art} />
+                            <ArtItem art={art} main={true} />
                         </div>
                     ))}
 
