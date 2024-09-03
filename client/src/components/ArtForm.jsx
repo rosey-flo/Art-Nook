@@ -6,6 +6,8 @@ import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { useMutation } from '@apollo/client'
 
 import UploadWidget from './UploadWidget';
+
+import { GET_USER_ARTWORK, GET_ALL_ARTWORK } from '../graphql/queries';
 import { ADD_ARTWORK, DELETE_ARTWORK } from '../graphql/mutations'
 
 const initialFormData = {
@@ -16,7 +18,7 @@ const initialFormData = {
     errorMessage: ''
 }
 
-const ArtForm = ({ onArtAdded }) => {
+const ArtForm = () => {
     const [showForm, setShowForm] = useState(false)
     const [formData, setFormData] = useState(initialFormData);
 
@@ -24,12 +26,13 @@ const ArtForm = ({ onArtAdded }) => {
         variables: formData,
         onCompleted: () => {
             setFormData(initialFormData);  // Reset form data
-            onArtAdded();  // Notify parent component
+            setShowForm(false)
         },
         onError: (error) => {
             console.error(error);
             setFormData(prevState => ({ ...prevState, errorMessage: error.message }));
-        }
+        },
+        refetchQueries: [{ query: GET_USER_ARTWORK, GET_ALL_ARTWORK }]
     })
 
 
@@ -44,17 +47,8 @@ const ArtForm = ({ onArtAdded }) => {
     const handleSubmit = async event => {
         event.preventDefault()
 
-        console.log(formData)
+        await addArtwork();
 
-        const res = await addArtwork();
-
-        if (res.data) {
-            setFormData({
-                ...initialFormData
-            })
-
-            window.location.reload();
-        }
     }
 
     const handleUpload = (error, result, widget) => {
