@@ -82,7 +82,7 @@ const ArtForm = () => {
                 //     {/* Cloudinary Widget */}
 
 
-                <div className='d-flex align-items-center justify-content-center rounded m-5 upload-widget'>
+                <div className='d-flex align-items-center justify-content-center rounded mb-4 upload-widget'>
                     <UploadWidget onUpload={handleUpload}>
                         {({ open }) => {
                             function handleOnClick(e) {

@@ -29,7 +29,7 @@ function Header(props) {
             </NavLink>
 
             {props.user ? (
-                <div className='d-flex flex-row justify-content-between align-items-center p-4'>
+                <div className='d-flex flex-row justify-content-between align-items-end p-4'>
                     <p className='basicfont white-font'>Welcome, {props.user.username}</p>
                     <p>
                         <NavLink to="/dashboard" className="basicfont dash-link mx-4">Dashboard</NavLink>

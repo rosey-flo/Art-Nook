@@ -84,7 +84,9 @@ header {
         font-family: $specialwhite;
     }
 
-
+    p {
+        margin-bottom: 0 !important;
+    }
 
     nav {
         a {
@@ -112,8 +114,6 @@ header {
     }
 
 }
-
-
 
 // Main Gallery
 .main-gallery {
