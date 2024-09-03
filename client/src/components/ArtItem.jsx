@@ -47,10 +47,10 @@ function ArtItem({ toggleEditMode, art, main }) {
 
                 <div className='d-flex justify-content-center'>
                     {/* Delete btn */}
-                    {!main && (<img style={{ height: '1.5rem ' }} src={trashicon} id={art._id} onClick={handleDelete} className='mx-3' />)}
+                    {!main && (<img style={{ height: '1.75rem ' }} src={trashicon} id={art._id} onClick={handleDelete} className='mx-3' />)}
 
                     {/* EDit btn*/}
-                    {!main && (<img style={{ height: '1.5rem ' }} src={pencilsquare} id={art._id} onClick={() => toggleEditMode(art)} className='mx-3' />)}
+                    {!main && (<img style={{ height: '1.75rem ' }} src={pencilsquare} id={art._id} onClick={() => toggleEditMode(art)} className='mx-3' />)}
                 </div>
 
             </div>

@@ -54,7 +54,7 @@ function UserDashboard() {
             </div>
 
 
-            <section id="art-output" className="container text-center">
+            <section id="art-output" className="container text-center my-5">
 
 
                 <div className="row">

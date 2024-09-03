@@ -1,8 +1,5 @@
-import { Cloudinary } from '@cloudinary/url-gen';
-import { AdvancedImage } from '@cloudinary/react';
-import { useState } from 'react';
-import { auto } from '@cloudinary/url-gen/actions/resize';
-import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
+import closeicon from 'bootstrap-icons/icons/x-circle.svg'
+
 import { useMutation } from '@apollo/client'
 
 import UploadWidget from './UploadWidget';
@@ -104,6 +101,10 @@ const ArtForm = ({
 
             ) : (
                 <form className='artwork-form d-flex flex-column justify-content-center  mb-5'>
+
+                    <button onClick={handleCloseForm} className="close-button">
+                        <img src={closeicon} /></button>
+
                     <div className="d-flex flex-column mb-2">
                         <label className="form-label d-flex flex-column p-3 text-center">{isEdit ? 'Update information for your artwork:' : 'Enter some information about your artwork: '}</label>
                         <input className='input-group-text p-1 mx-5' onChange={handleInputChange} name="title" placeholder='artwork title' value={formData.title} type="text" />
@@ -116,9 +117,7 @@ const ArtForm = ({
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center'>
-                        <button onClick={handleSubmit} className="btn m-3">{isEdit ? 'Update' : 'Submit'}</button>
-
-                        <button onClick={handleCloseForm} className="btn m-3 ml-3">Close/Cancel</button>
+                        <button onClick={handleSubmit} className="submit-button btn m-3">{isEdit ? 'Update' : 'Submit'}</button>
                     </div>
                 </form>
 

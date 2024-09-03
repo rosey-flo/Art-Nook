@@ -24,22 +24,25 @@ function Header(props) {
 
     return (
         <header className="header d-flex flex-row justify-content-between align-items-center p-4">
-            <NavLink to="/homepage">
-                <h1 className="spfont text-center">art nook</h1>
+            <NavLink to="/">
+                <h1 className="spfont text-center mx-5">art nook</h1>
             </NavLink>
 
             {props.user ? (
                 <div className='d-flex flex-row justify-content-between align-items-end p-4'>
-                    <p className='basicfont white-font'>Welcome, {props.user.username}</p>
+                    <h6 className='basicfont white-font mx-3'>Welcome, {props.user.username}</h6>
                     <p>
-                        <NavLink to="/dashboard" className="basicfont dash-link mx-4">Dashboard</NavLink>
+                        <NavLink to="/homepage" className="basicfont dash-link mx-3">Main Gallery</NavLink>
                     </p>
-                    <button className='btn px-2' onClick={handleLogout}>log out</button>
+                    <p>
+                        <NavLink to="/dashboard" className="basicfont dash-link mx-3">Dashboard</NavLink>
+                    </p>
+                    <button className='btn px-3' onClick={handleLogout}>log out</button>
                 </div>
             ) : (
                 <nav className="flex-column">
-                    <NavLink to="/" className="basicfont">Home</NavLink>
-                    <NavLink to="/auth" className="basicfont">Login / Register</NavLink>
+                    <NavLink to="/" className="dash-link basicfont">Home</NavLink>
+                    <NavLink to="/auth" className="dash-link basicfont">Login / Register</NavLink>
 
                 </nav>
             )}

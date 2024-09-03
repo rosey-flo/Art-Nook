@@ -131,7 +131,7 @@ const resolvers = {
       const user = await User.findById(user_id);
       const artwork = await Artwork.create({
         ...args,
-        user: user._id
+        artist: user._id
 
       });
 

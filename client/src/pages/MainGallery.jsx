@@ -13,7 +13,7 @@ function MainGallery() {
     return (
         <>
             <section>
-                <h1 className="main-gallery basicfont text-center mb-5">Main Gallery</h1>
+                <h1 className="main-gallery basicfont text-center mb-5">The Art Show</h1>
             </section>
 
 
