@@ -30,26 +30,23 @@ mutation LogoutUser {
 }`
 
 export const ADD_ARTWORK = gql`
-	mutation AddArtwork($title: String!, $description: String, $imageUrl: String!, $date: String, $artist: String) {
-  addArtwork(title: $title, description: $description, imageUrl: $imageUrl, date: $date, artist: $artist) {
+	mutation AddArtwork($title: String!, $description: String, $imageUrl: String!, $date: String) {
+  addArtwork(title: $title, description: $description, imageUrl: $imageUrl, date: $date) {
     _id
-    date
-    description
-    imageUrl
-    title
-    artist {
-      _id
-      email
-      username
-    }
+
   }
-}
-`
+}`
+
+export const UPDATE_ARTWORK = gql`
+  mutation UpdateArtwork($id: ID, $imageUrl: String, $description: String, $title: String, $date: String) {
+  updateArtwork(id: $id, imageUrl: $imageUrl, description: $description, title: $title, date: $date) {
+    _id
+  }
+}`
 
 export const DELETE_ARTWORK = gql`
 	mutation DeleteArtwork($deleteArtworkId: ID!) {
   deleteArtwork(id: $deleteArtworkId) {
     message
   }
-}
-`
+}`
