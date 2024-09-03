@@ -40,10 +40,10 @@ function ArtItem({ art }) {
                 <p className="card-text">{art.description}</p>
 
                 {/* This terinary was added to indicate that this would only display if a artist/user is queried since the GET USER ART does not need it */}
-                {art.artist && (<p className="card-text"><small className="text-body-secondary">{art.artist}</small></p>)}
+                {art.artist && (<p className="card-text"><small className="text-body-secondary">{art.artist.username}</small></p>)}
                 <p className="card-text"><small className="text-body-secondary">{art.date}</small></p>
 
-                <img style={{ height: '1.5rem' }} src={trashicon} id={art._id} onClick={handleDelete} />
+                {!main && (<img style={{ height: '1.5rem ' }} src={trashicon} id={art._id} onClick={handleDelete} />)}
 
                 {/* <span className="insta-label m-3">Instagram Link</span>
                         <a href={art.data?.githubRepo} target="_blank">
