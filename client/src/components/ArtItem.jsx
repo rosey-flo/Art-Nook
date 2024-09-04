@@ -2,21 +2,16 @@ import trashicon from 'bootstrap-icons/icons/trash3.svg'
 import pencilsquare from 'bootstrap-icons/icons/pencil-square.svg'
 import hearticon from 'bootstrap-icons/icons/heart.svg'
 import heartfill from 'bootstrap-icons/icons/heart-fill.svg'
-import { useMutation, useQuery } from "@apollo/client"
-import { useState } from "react"
+import { useMutation } from "@apollo/client"
 
-import { GET_USER_ARTWORK, GET_USER_FAVORITES } from '../graphql/queries'
+import { GET_USER_ARTWORK, GET_USER_FAVORITES, GET_ALL_ARTWORK } from '../graphql/queries'
 import { DELETE_ARTWORK, TOGGLE_FAVORITE } from "../graphql/mutations"
 
-function ArtItem({ toggleEditMode, art, main, setArtwork }) {
-
-
+function ArtItem({ toggleEditMode, art, main, showFav }) {
     const [deleteArtwork] = useMutation(DELETE_ARTWORK)
     const [toggleFavorite] = useMutation(TOGGLE_FAVORITE, {
-        refetchQueries: [GET_USER_ARTWORK, GET_USER_FAVORITES]
+        refetchQueries: [GET_USER_ARTWORK, GET_USER_FAVORITES, GET_ALL_ARTWORK]
     })
-
-
 
     const handleDelete = async (event) => {
         const id = event.target.id
@@ -37,17 +32,13 @@ function ArtItem({ toggleEditMode, art, main, setArtwork }) {
     const handleLike = async (item) => {
         try {
             await toggleFavorite({ variables: { artworkId: item._id } })
-            item.liked = !item.liked
-            setArtwork((oldArtwork) => {
-                return[...oldArtwork]
-            })
         } catch (error) {
             console.log(error)
         }
     }
 
 
-   return (
+    return (
         <div className="card mb-3 d-flex align-items-stretch">
             <div className="card-body text-center d-flex flex-column justify-content-between">
                 <img src={art.imageUrl} className="rounded-start mb-5" />
@@ -62,12 +53,12 @@ function ArtItem({ toggleEditMode, art, main, setArtwork }) {
                             <img style={{ height: '1.75rem' }} src={pencilsquare} id={art._id} onClick={() => toggleEditMode(art)} className='mx-3' />
                         </>
                     )}
-                     <img 
-                        style={{ height: '1.75rem', cursor: 'pointer' }} 
-                        src={art.liked ? heartfill : hearticon} 
-                        onClick={() => handleLike(art)} 
-                        className='mx-3' 
-                    />
+                    {showFav && <img
+                        style={{ height: '1.75rem', cursor: 'pointer' }}
+                        src={art.liked ? heartfill : hearticon}
+                        onClick={() => handleLike(art)}
+                        className='mx-3'
+                    />}
                 </div>
             </div>
         </div>

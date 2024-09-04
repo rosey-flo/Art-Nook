@@ -25,8 +25,6 @@ function UserDashboard() {
     const { data } = useQuery(GET_USER_ARTWORK)
 
     const toggleEditMode = artworkObj => {
-
-        console.log(artworkObj)
         setFormData({
             ...artworkObj,
             id: artworkObj._id
@@ -60,7 +58,7 @@ function UserDashboard() {
                 <div className="row">
                     {data?.getUserArtwork.map((art, index) => (
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index} >
-                            <ArtItem toggleEditMode={toggleEditMode} art={art} />
+                            <ArtItem showFav={false} toggleEditMode={toggleEditMode} art={art} />
                         </div>
                     ))}
 
