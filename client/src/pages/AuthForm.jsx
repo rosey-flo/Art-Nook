@@ -80,12 +80,12 @@ function AuthForm(props) {
                 <input onChange={handleInputChange} name="email" type="email" placeholder="email" autoComplete="email" />
                 <input onChange={handleInputChange} name="password" type="password" placeholder="enter password" autoComplete="current-password" />
 
-                <button>Submit</button>
+                <button className="my-3">Submit</button>
 
                 {formData.isLogin ? (
                     <p className="text-center white-font">Need to Register? <span onClick={() => toggleForm(false)}>Click Here</span> </p>
                 ) : (
-                    <p className="text-center">Already Registered? <span onClick={() => toggleForm(true)}>Click Here</span> </p>
+                    <p className="text-center white-font">Already Registered? <span onClick={() => toggleForm(true)}>Click Here</span> </p>
                 )}
 
             </form>

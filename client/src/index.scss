@@ -25,6 +25,8 @@ $specialpink: #BE6DB1;
 $specialorange: #FB8F52;
 $specialwhite: #E4E2DD;
 
+// Resets
+
 * {
     margin: 0;
     padding: 0;
@@ -76,42 +78,48 @@ button {
 
 //  Custom Styles
 
+.enter-button {
+    font-family: $basicfont !important;
+
+    &:hover {
+        background-color: $specialpink !important;
+    }
+}
+
 // Header
 header {
     padding: 10px 5%;
 
     h1 {
-        font-size: 8vh !important;
+        font-size: 10vh !important;
         font-family: $specialwhite;
+    }
+
+    h6 {
+        margin-bottom: 0 !important;
     }
 
     p {
         margin-bottom: 0 !important;
     }
 
-    nav {
-        a {
-            color: $specialwhite;
-            margin-left: 20px;
+    .dash-link {
 
-
-            &.active {
-                text-decoration: underline;
-
-                &:hover {
-                    color: $specialorange;
-                }
-            }
-
+        &.active,
+        &:hover {
+            font-size: 1.3rem;
         }
     }
 
-    .nav-link {
-        color: $specialwhite;
-    }
-
     .btn {
-        background-color: $specialwhite;
+        background-color: $specialpurple;
+        color: $specialwhite;
+        font-weight: bold;
+
+        &:hover {
+            background-color: $specialpink;
+            color: $specialwhite;
+        }
     }
 
 }
@@ -121,31 +129,25 @@ header {
     color: $specialwhite;
 }
 
-#art-output {
-    // display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-
-    img {
-        // aspect-ratio: 1/1;
-        height: 100%;
-    }
-}
-
 // Artwork form + upload
-
 .upload-widget {
     .upload-btn {
-        background-color: $specialorange;
+        background-color: $specialpink;
         color: $specialwhite;
         font-size: 1.25rem;
         font-weight: bold;
         box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
         text-align: center;
+
+        &:hover,
+        &:active {
+            background-color: $specialorange;
+        }
     }
 }
 
 .artwork-form {
-
+    position: relative;
     background-color: $specialwhite;
     border: 3px solid lightgray;
     box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
@@ -153,15 +155,36 @@ header {
     width: 75%;
     margin: 0px auto;
 
+    .submit-button {
+        background-color: $specialpink;
+        width: 25%;
+
+        &:hover {
+            background-color: $specialorange;
+            color: $specialwhite
+        }
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: $specialpink;
+        cursor: pointer;
+
+        img {
+            height: 2rem !important;
+        }
+    }
+
     button {
         background-color: $specialpurple;
         color: whitesmoke;
         font-weight: bold;
-        width: 25%;
 
-        &:hover {
-            background-color: $specialpink;
-        }
     }
 }
 
@@ -170,22 +193,15 @@ header {
 //Art-Item
 
 .card-body {
-    button {
-        background-color: #E4E2DD;
-        border-color: #E4E2DD;
-
-        &.active,
-        &:hover {
-            background-color: $specialblue;
-            border-color: $specialblue;
-        }
+    img {
+        cursor: pointer;
     }
 }
 
 // AuthForm Styles
 
 .authform {
-    width: 75%;
+    width: 55%;
     margin: 0px auto;
 
     >* {
@@ -201,9 +217,16 @@ header {
 
     button {
         background: $specialpurple;
+        color: $specialwhite;
+        font-weight: bold;
         padding: 10px;
         width: 35%;
         align-self: center;
+        border: none;
+
+        &:hover {
+            background-color: $specialblue;
+        }
     }
 
     span {
@@ -211,7 +234,7 @@ header {
 
         &:hover {
             text-decoration: underline;
-            color: $specialorange;
+            color: $specialblue;
             cursor: pointer;
         }
     }
@@ -291,25 +314,31 @@ header {
     .artwork-form {
         width: 40%;
     }
+
+    .authform {
+        width: 30%;
+    }
 }
 
-@media(max-width: 600px) {
+@media(max-width: 800px) {
     .header {
+
         display: flex;
         flex-direction: column !important;
+        white-space: nowrap;
 
         h1 {
-            font-size: 3rem !important;
+            font-size: 4rem !important;
             text-align: center;
         }
 
-        nav a {
-            font-size: 1.5rem;
+        .dash-link {
 
             &.active,
             &:hover {
-                font-size: 1.75rem;
+                font-size: 1.25rem;
             }
         }
+
     }
 }

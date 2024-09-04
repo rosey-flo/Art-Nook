@@ -35,13 +35,18 @@ export const ADD_ARTWORK = gql`
     _id
 
   }
-}
-`
+}`
+
+export const UPDATE_ARTWORK = gql`
+  mutation UpdateArtwork($id: ID, $imageUrl: String, $description: String, $title: String, $date: String) {
+  updateArtwork(id: $id, imageUrl: $imageUrl, description: $description, title: $title, date: $date) {
+    _id
+  }
+}`
 
 export const DELETE_ARTWORK = gql`
 	mutation DeleteArtwork($deleteArtworkId: ID!) {
   deleteArtwork(id: $deleteArtworkId) {
     message
   }
-}
-`
+}`
