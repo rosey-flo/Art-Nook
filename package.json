@@ -8,7 +8,7 @@
     "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\"",
 		"build": "cd ./client && npm run build",
 		"start": "cd ./server && npm start",
-		"deploy": "npm run build && git add -A && git commit -m \"ready for deploy\" && git push origin HEAD"
+		"deploy": "npm run build && git add -A && git commit -m \"ready for deploy\" && git push origin HEAD -f"
   },
   "keywords": [],
   "author": "",
