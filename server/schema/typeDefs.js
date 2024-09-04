@@ -37,6 +37,7 @@ const typeDefs = gql`
     registerUser(username: String, email: String, password: String): AuthResponse
     loginUser(email: String, password: String): AuthResponse
     logoutUser: AuthResponse
+    updateUser(id: ID, username: String, email: String, password: String): User
 
     # # Artwork Mutations
 

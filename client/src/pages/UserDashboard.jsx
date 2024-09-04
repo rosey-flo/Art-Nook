@@ -26,7 +26,6 @@ function UserDashboard() {
 
     const toggleEditMode = artworkObj => {
 
-        console.log(artworkObj)
         setFormData({
             ...artworkObj,
             id: artworkObj._id

@@ -29,6 +29,16 @@ mutation LogoutUser {
   }
 }`
 
+export const UPDATE_USER = gql`
+mutation UpdateUser($id: ID, $username: String, $email: String) {
+  updateUser(id: $id, username: $username, email: $email) {
+    username
+    email
+    _id
+  }
+}
+`
+
 export const ADD_ARTWORK = gql`
 	mutation AddArtwork($title: String!, $description: String, $imageUrl: String!, $date: String) {
   addArtwork(title: $title, description: $description, imageUrl: $imageUrl, date: $date) {

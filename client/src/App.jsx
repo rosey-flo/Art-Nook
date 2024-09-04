@@ -9,6 +9,7 @@ import MainGallery from "./pages/MainGallery";
 import AuthForm from './pages/AuthForm';
 import UserDashboard from "./pages/UserDashboard";
 import LandingPage from './pages/LandingPage';
+import ProfileUpdate from './pages/ProfileUpdate';
 
 import { GET_USER } from './graphql/queries';
 
@@ -37,6 +38,11 @@ function App() {
         <Route path='/dashboard' element={(
           <Protect requireAuth={true} user={user}>
             <UserDashboard user={user} />
+          </Protect>
+        )} />
+        <Route path='/profile-update' element={(
+          <Protect requireAuth={true} user={user}>
+            <ProfileUpdate user={user} />
           </Protect>
         )} />
       </Routes>

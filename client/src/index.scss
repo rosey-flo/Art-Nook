@@ -240,6 +240,28 @@ header {
     }
 }
 
+// Update User
+.update-form {
+    width: 50%;
+    // align-self: center;
+}
+
+
+.update-username {
+    background: $specialpurple;
+    color: $specialwhite;
+    font-weight: bold;
+    padding: 10px;
+    width: 35%;
+    align-self: center;
+    border: none;
+
+    &:hover {
+        background-color: $specialblue;
+        color: $specialwhite;
+    }
+}
+
 // Landing Page 
 
 .landing-page {

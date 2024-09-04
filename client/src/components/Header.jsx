@@ -30,7 +30,7 @@ function Header(props) {
 
             {props.user ? (
                 <div className='d-flex flex-row justify-content-between align-items-end p-4'>
-                    <h6 className='basicfont white-font mx-3'>Welcome, {props.user.username}</h6>
+                    <NavLink to="/profile-update" className="basicfont white-font mx-3">Welcome, {props.user.username}</NavLink>
                     <p>
                         <NavLink to="/homepage" className="basicfont dash-link mx-3">Main Gallery</NavLink>
                     </p>
