@@ -37,6 +37,9 @@ function Header(props) {
                     <p>
                         <NavLink to="/dashboard" className="basicfont dash-link mx-3">Dashboard</NavLink>
                     </p>
+                    <p>
+                        <NavLink to="/favorites" className="basicfont dash-link mx-3">Favorites</NavLink>
+                    </p>
                     <button className='btn px-3' onClick={handleLogout}>log out</button>
                 </div>
             ) : (

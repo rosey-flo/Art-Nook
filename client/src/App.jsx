@@ -9,7 +9,7 @@ import MainGallery from "./pages/MainGallery";
 import AuthForm from './pages/AuthForm';
 import UserDashboard from "./pages/UserDashboard";
 import LandingPage from './pages/LandingPage';
-import ProfileUpdate from './pages/ProfileUpdate';
+import Favorites from './pages/Favorites'; // Import the new Favorites component
 
 import { GET_USER } from './graphql/queries';
 
@@ -40,9 +40,9 @@ function App() {
             <UserDashboard user={user} />
           </Protect>
         )} />
-        <Route path='/profile-update' element={(
+        <Route path='/favorites' element={(
           <Protect requireAuth={true} user={user}>
-            <ProfileUpdate user={user} />
+            <Favorites />
           </Protect>
         )} />
       </Routes>

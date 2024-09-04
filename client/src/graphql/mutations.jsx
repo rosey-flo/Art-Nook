@@ -60,3 +60,12 @@ export const DELETE_ARTWORK = gql`
     message
   }
 }`
+
+export const TOGGLE_FAVORITE = gql`
+mutation ToggleFavorite($artworkId: ID!) {
+  toggleFavorite(artworkId: $artworkId) {
+    message
+  }
+}
+`
+

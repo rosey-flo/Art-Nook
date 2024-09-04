@@ -5,6 +5,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
+    favorites: [Artwork]  # Added field
   }
 
   type Artwork {
@@ -14,7 +15,7 @@ const typeDefs = gql`
     imageUrl: String
     artist: User
     date: String
-    # comments: [Comment]
+    liked: Boolean
   }
 
   type Response {
@@ -30,6 +31,7 @@ const typeDefs = gql`
     getUser: AuthResponse
     getUserArtwork(id: ID): [Artwork]
     getAllArtwork: [Artwork]
+    getUserFavorites: [Artwork]  # Added query
   }
 
   type Mutation {
@@ -45,6 +47,9 @@ const typeDefs = gql`
     updateArtwork(id: ID, title: String, description: String, imageUrl: String, date: String): Artwork
     deleteArtwork(id: ID): Response
 
+    # Favorites Mutations
+    toggleFavorite(artworkId: ID!): Response  # Added mutation
+    
 
   }
 `;

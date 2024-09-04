@@ -50,12 +50,33 @@ const resolvers = {
     },
 
 
-    async getAllArtwork() {
-      const artwork = await Artwork.find().populate('artist')
+    async getAllArtwork(_, __, context) {
+      let artwork = await Artwork.find().populate('artist')
+      if (context.user_id) {
+        const user = await User.findById(context.user_id)
+        artwork = artwork.map(artItem => {
+          artItem = artItem.toObject()
+          if (user.favorites.includes(artItem._id)) {
+            artItem.liked = true
+    
+          } else {
+            artItem.liked = false
+          }
+          return artItem;
+        })
 
-
+      }
       return artwork;
+    },
+    async getUserFavorites(_, args, context) {
+      const user_id = context.user_id;
+      if (!user_id) {
+        throw new GraphQLError('Not Authorized');
+      }
+      const user = await User.findById(user_id).populate('favorites');
+      return user.favorites;
     }
+
   },
 
   Mutation: {
@@ -205,8 +226,23 @@ const resolvers = {
       return {
         message: 'Artwork deleted successfully'
       }
+    },
+    async toggleFavorite(_, args, context) {
+      const user_id = context.user_id;
+      if (!user_id) {
+        throw new GraphQLError('Not Authorized');
+      }
+      const user = await User.findById(user_id);
+      if (user.favorites.includes(args.artworkId)) {
+        user.favorites.pull(args.artworkId)
+      } else {
+        user.favorites.push(args.artworkId);
+      }
+
+      await user.save();
+      return { message: 'Artwork favorite toggled successfully' };
     }
   }
-};
+}
 
 module.exports = resolvers;
