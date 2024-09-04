@@ -5,7 +5,7 @@ import ArtItem from "../components/ArtItem"
 import { GET_ALL_ARTWORK } from "../graphql/queries"
 
 
-function MainGallery() {
+function MainGallery({user}) {
     const { data } = useQuery(GET_ALL_ARTWORK)
 
     return (
@@ -24,7 +24,8 @@ function MainGallery() {
                             <ArtItem
                                 showFav={true}
                                 art={art}
-                                main={true} />
+                                main={true}
+                                user={user} />
                         </div>
                     ))}
 

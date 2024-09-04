@@ -7,7 +7,7 @@ import { useMutation } from "@apollo/client"
 import { GET_USER_ARTWORK, GET_USER_FAVORITES, GET_ALL_ARTWORK } from '../graphql/queries'
 import { DELETE_ARTWORK, TOGGLE_FAVORITE } from "../graphql/mutations"
 
-function ArtItem({ toggleEditMode, art, main, showFav }) {
+function ArtItem({ toggleEditMode, art, main, showFav, user }) {
     const [deleteArtwork] = useMutation(DELETE_ARTWORK)
     const [toggleFavorite] = useMutation(TOGGLE_FAVORITE, {
         refetchQueries: [GET_USER_ARTWORK, GET_USER_FAVORITES, GET_ALL_ARTWORK]
@@ -53,7 +53,7 @@ function ArtItem({ toggleEditMode, art, main, showFav }) {
                             <img style={{ height: '1.75rem' }} src={pencilsquare} id={art._id} onClick={() => toggleEditMode(art)} className='mx-3' />
                         </>
                     )}
-                    {showFav && <img
+                    {(user && showFav) && <img
                         style={{ height: '1.75rem', cursor: 'pointer' }}
                         src={art.liked ? heartfill : hearticon}
                         onClick={() => handleLike(art)}

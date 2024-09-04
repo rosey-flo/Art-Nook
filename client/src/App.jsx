@@ -29,7 +29,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/homepage' element={<MainGallery />} />
+        <Route path='/homepage' element={<MainGallery user={user}/>} />
         <Route path='/auth' element={(
           <Protect requireAuth={false} user={user}>
             <AuthForm setUser={setUser} />
