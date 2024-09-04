@@ -97,9 +97,10 @@ To deploy the application yourself:
 
 Looking ahead, we plan to explore the following enhancements:
 
-- **Payment Platform:** Integrating a payment platform like Stripe to allow users to accept donations or payments for their artwork.
-- **PWA Features:** Transforming ArtNook into a Progressive Web App (PWA) by implementing a web manifest, service worker for offline functionality, and making the app installable on devices.
-- **Community Features:** Expanding social interaction features, such as likes, comments, and following other artists to foster a more engaging community environment.
+- **Favortie Feature** Add feature for users to mark an artist as their favorite.
+- **EventsPage Feature:** An events page where users can create and keep track dates/times for an event where they can showcase their art. Others would be able to bookmark these events.
+- **Comment Feature:** A comment or like option for all art pieces uploaded to the main gallery.
+
 
 ## License
 
