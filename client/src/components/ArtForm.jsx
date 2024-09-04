@@ -125,7 +125,7 @@ const ArtForm = ({
                     </div>
                 </form>
 
-            )}
+                )}
 
         </>
     );

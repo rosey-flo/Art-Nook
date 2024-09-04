@@ -26,10 +26,14 @@ const userSchema = new Schema({
 		minLength: [6, 'Your password must be at least 6 characters in length'],
 	},
 
-	 artwork: [{
-	 	type: Schema.Types.ObjectId,
-	 	ref: 'Artwork',
-	 }]
+    artwork: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Artwork',
+    }],
+    favorites: [{  // New field
+        type: Schema.Types.ObjectId,
+        ref: 'Artwork',
+    }]
 },
 	{
 		toJSON: {
