@@ -41,8 +41,8 @@ function Header(props) {
                 </div>
             ) : (
                 <nav className="flex-column">
-                    <NavLink to="/" className="dash-link basicfont">Home</NavLink>
-                    <NavLink to="/auth" className="dash-link basicfont">Login / Register</NavLink>
+
+                    <NavLink to="/auth" className="dash-link basicfont mx-5">Login / Register</NavLink>
 
                 </nav>
             )}

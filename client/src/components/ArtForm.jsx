@@ -75,7 +75,11 @@ const ArtForm = ({
     };
 
     const handleCloseForm = () => {
-        setShowForm(false);
+        setFormData(initialFormData)
+
+        setShowForm(false)
+
+        setIsEdit(false)
     }
 
     return (
