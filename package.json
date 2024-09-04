@@ -5,7 +5,10 @@
   "scripts": {
     "client:dev": "cd client && npm run dev",
     "server:dev": "cd server && npm run dev",
-    "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\""
+    "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\"",
+		"build": "cd ./client && npm run build",
+		"start": "cd ./server && npm start",
+		"deploy": "npm run build && git add -A && git commit -m \"ready for deploy\" && git push origin HEAD"
   },
   "keywords": [],
   "author": "",
