@@ -325,6 +325,7 @@ header {
 
         display: flex;
         flex-direction: column !important;
+        white-space: nowrap;
 
         h1 {
             font-size: 4rem !important;
@@ -338,5 +339,6 @@ header {
                 font-size: 1.25rem;
             }
         }
+
     }
 }

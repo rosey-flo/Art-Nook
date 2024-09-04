@@ -85,7 +85,7 @@ function AuthForm(props) {
                 {formData.isLogin ? (
                     <p className="text-center white-font">Need to Register? <span onClick={() => toggleForm(false)}>Click Here</span> </p>
                 ) : (
-                    <p className="text-center">Already Registered? <span onClick={() => toggleForm(true)}>Click Here</span> </p>
+                    <p className="text-center white-font">Already Registered? <span onClick={() => toggleForm(true)}>Click Here</span> </p>
                 )}
 
             </form>
