@@ -141,6 +141,26 @@ const resolvers = {
       }
     },
 
+    async updateUser(_, args, context) {
+      const user_id = context.user_id
+
+      if (!user_id) {
+        throw new GraphQLError('you cannot perform that action')
+      }
+
+      const user = await User.findByIdAndUpdate(user_id, {
+        username: args.username
+      }, { new: true })
+
+
+      if (!user) {
+        throw new GraphQLError('user not found')
+      }
+
+      return user;
+
+    },
+
     // Artwork Resolvers
 
     async addArtwork(_, args, context) {

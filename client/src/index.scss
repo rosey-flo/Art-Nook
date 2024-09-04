@@ -216,7 +216,7 @@ header {
     }
 
     button {
-        background: $specialpurple;
+        background: $specialorange;
         color: $specialwhite;
         font-weight: bold;
         padding: 10px;
@@ -225,7 +225,7 @@ header {
         border: none;
 
         &:hover {
-            background-color: $specialblue;
+            background-color: $specialpurple;
         }
     }
 
@@ -237,6 +237,28 @@ header {
             color: $specialblue;
             cursor: pointer;
         }
+    }
+}
+
+// Update User
+.update-form {
+    width: 50%;
+    // align-self: center;
+}
+
+
+.update-username {
+    background: $specialpurple;
+    color: $specialwhite;
+    font-weight: bold;
+    padding: 10px;
+    width: 35%;
+    align-self: center;
+    border: none;
+
+    &:hover {
+        background-color: $specialblue;
+        color: $specialwhite;
     }
 }
 

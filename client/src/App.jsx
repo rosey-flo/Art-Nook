@@ -40,7 +40,7 @@ function App() {
             <UserDashboard user={user} />
           </Protect>
         )} />
-         <Route path='/favorites' element={(
+        <Route path='/favorites' element={(
           <Protect requireAuth={true} user={user}>
             <Favorites />
           </Protect>
